@@ -120,7 +120,7 @@ uint8_t LSM6::readReg(uint8_t reg)
 void LSM6::readAcc(void)
 {
   uint8_t block[6];
-  i2c.readBlock(0x80 | OUTX_L_XL, sizeof(block), block);
+  i2c.readBlock(OUTX_L_XL, sizeof(block), block);
 
   // combine high and low bytes
   a[0] = (int16_t)(block[1] << 8 | block[0]);
@@ -132,7 +132,7 @@ void LSM6::readAcc(void)
 void LSM6::readGyro(void)
 {
   uint8_t block[6];
-  i2c.readBlock(0x80 | OUTX_L_G, sizeof(block), block);
+  i2c.readBlock(OUTX_L_G, sizeof(block), block);
 
   // combine high and low bytes
   g[0] = (int16_t)(block[1] << 8 | block[0]);
