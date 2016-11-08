@@ -3,7 +3,7 @@
 #include <iostream>
 #include <chrono>
 #include "Eigen/Core"
-#include <stdlib>
+#include <cstdlib>
 
 
 void run(IMU &imu) {
