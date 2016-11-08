@@ -18,27 +18,10 @@ void Sensors::enable()
     gyroacc.enable();
 }
 
-void Sensors::loadCalibration()
-{
-    wordexp_t expansion_result;
-    wordexp("~/.Sensors-ahrs-cal", &expansion_result, 0);
-
-    std::ifstream file(expansion_result.we_wordv[0]);
-    if (file.fail())
-    {
-        throw posix_error("Failed to open calibration file ~/.Sensors-ahrs-cal");
-    }
-
-    file >> mag_min(0) >> mag_max(0) >> mag_min(1) >> mag_max(1) >> mag_min(2) >> mag_max(2);
-    if (file.fail() || file.bad())
-    {
-        throw std::runtime_error("Failed to parse calibration file ~/.Sensors-ahrs-cal");
-    }
-}
 
 void Sensors::measureOffsets()
 {
-    
+    /*
     // TODO scales
     gyro_offset = vector::Zero();
     const int sampleCount = 32;
@@ -49,6 +32,7 @@ void Sensors::measureOffsets()
         usleep(20*1000);
     }
     gyro_offset /= sampleCount;
+    */
 }
 
 vector Sensors::readMag()
