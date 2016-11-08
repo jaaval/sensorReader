@@ -2,7 +2,7 @@
 #include "sensors.h"
 #include <iostream>
 #include <chrono>
-#include <Eigen/Core>
+#include "Eigen/Core"
 
 
 void run(IMU &imu) {
