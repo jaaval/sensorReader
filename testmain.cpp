@@ -7,13 +7,13 @@
 
 void run(IMU &imu) {
 
-	auto time0 = std::chrono::high_resolution_clock::now();
-	auto time = time0;
+	std::time_t time0 = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+	std::time_t time = time0;
 	Eigen::Vector3f samplevec;
 
 	int i = 0;
 	while (i < 1000) {
-		time = std::chrono::high_resolution_clock::now() - time0;
+		time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()); - time0;
 		samplevec = imu.readAcc();
 		std::cout << "Acc: " << time.count() << " " << samplevec << std::endl;
 		samplevec = imu.readMag();
