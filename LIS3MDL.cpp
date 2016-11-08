@@ -119,9 +119,9 @@ uint8_t LIS3MDL::readReg(uint8_t reg)
 // Reads the 3 mag channels and stores them in vector m
 void LIS3MDL::read()
 {
-
+  //0x80 | OUT_X_L
   uint8_t block[6];
-  i2c.readBlock(0x80 | OUT_X_L, sizeof(block), block);
+  i2c.readBlock(OUT_X_L, sizeof(block), block);
 
   // combine high and low bytes
   m[0] = (int16_t)(block[1] << 8 | block[0]);
