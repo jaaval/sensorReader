@@ -53,7 +53,7 @@ void Sensors::measureOffsets()
 
 vector Sensors::readMag()
 {
-    compass.readMag();
+    compass.read();
     IMU::raw_m = int_vector_from_ints(&compass.m);
     
     vector v;
