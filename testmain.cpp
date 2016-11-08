@@ -28,7 +28,7 @@ void run(IMU &imu) {
 
 int main() {
 
-	std::string i2cdevice = "/dev/i2c-0";
+	std::string i2cdevice = "/dev/i2c-1";
 	Sensors imu(i2cdevice.c_str());
 	run(imu);
 	return 0;
