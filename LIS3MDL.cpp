@@ -1,4 +1,4 @@
-#include <LIS3MDL.h>
+#include "LIS3MDL.h"
 #include <math.h>
 #include "I2CBus.h"
 
