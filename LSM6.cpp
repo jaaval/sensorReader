@@ -1,5 +1,6 @@
 #include "LSM6.h"
 #include <math.h>
+#include <cassert>
 
 // Defines ////////////////////////////////////////////////////////////////
 
@@ -18,7 +19,7 @@ LSM6::LSM6(const char * i2cDeviceName):
   i2c(i2cDeviceName)
 {
   _device = device_auto;
-  init();
+  assert(init());
 }
 
 // Public Methods //////////////////////////////////////////////////////////////

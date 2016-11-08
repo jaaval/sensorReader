@@ -1,6 +1,7 @@
 #include "LIS3MDL.h"
 #include <math.h>
 #include "I2CBus.h"
+#include <cassert>
 
 // Defines ////////////////////////////////////////////////////////////////
 
@@ -20,7 +21,8 @@ LIS3MDL::LIS3MDL(const char * i2cDeviceName):
 {
   _device = device_auto;
 
-  init();
+  assert(init());
+  
 }
 
 // Public Methods //////////////////////////////////////////////////////////////
