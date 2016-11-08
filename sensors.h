@@ -17,7 +17,6 @@ public:
     virtual vector readGyro();
 
     virtual void enable();
-    virtual void loadCalibration();
     virtual void measureOffsets();
 };
 
