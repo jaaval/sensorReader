@@ -123,8 +123,13 @@ void LIS3MDL::read()
 {
   //0x80 | OUT_X_L
   uint8_t block[6];
-  i2c.readBlock(OUT_X_L, sizeof(block), block);
-
+  //i2c.readBlock(0x80 | OUT_X_L, sizeof(block), block);
+  block[0] = i2c.readByte(OUT_X_L);
+  block[1] = i2c.readByte(OUT_X_H);
+  block[2] = i2c.readByte(OUT_Y_L);
+  block[3] = i2c.readByte(OUT_Y_H);
+  block[4] = i2c.readByte(OUT_Z_L);
+  block[5] = i2c.readByte(OUT_Z_H);
   // combine high and low bytes
   m[0] = (int16_t)(block[1] << 8 | block[0]);
   m[1] = (int16_t)(block[3] << 8 | block[2]);
