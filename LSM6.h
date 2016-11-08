@@ -89,7 +89,7 @@ class LSM6
 
     uint8_t last_status; // status of last I2C transmission
 
-    LSM6(void);
+    LSM6(const char * i2cDeviceName);
 
     bool init(deviceType device = device_auto, sa0State sa0 = sa0_auto);
     deviceType getDeviceType(void) { return _device; }

@@ -42,7 +42,7 @@ class LIS3MDL
 
     uint8_t last_status; // status of last I2C transmission
 
-    LIS3MDL(void);
+    LIS3MDL(const char * i2cDeviceName);
 
     bool init(deviceType device = device_auto, sa1State sa1 = sa1_auto);
     deviceType getDeviceType(void) { return _device; }
