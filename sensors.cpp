@@ -45,7 +45,7 @@ void Sensors::measureOffsets()
     for(int i = 0; i < sampleCount; i++)
     {
         gyroacc.read();
-        gyro_offset += vector_from_ints(&gyroacc.g);
+        gyro_offset += vector_from_ints(gyroacc.g);
         usleep(20*1000);
     }
     gyro_offset /= sampleCount;
@@ -54,12 +54,12 @@ void Sensors::measureOffsets()
 vector Sensors::readMag()
 {
     compass.read();
-    IMU::raw_m = int_vector_from_ints(&compass.m);
+    IMU::raw_m << compass.m[0], compass.m[1], compass.m[2];
     
     vector v;
-    v(0) = (float)(compass.m[0] - mag_min(0)) / (mag_max(0) - mag_min(0)) * 2 - 1;
-    v(1) = (float)(compass.m[1] - mag_min(1)) / (mag_max(1) - mag_min(1)) * 2 - 1;
-    v(2) = (float)(compass.m[2] - mag_min(2)) / (mag_max(2) - mag_min(2)) * 2 - 1;
+    v(0) = (float)(compass.m[0]);
+    v(1) = (float)(compass.m[1]);
+    v(2) = (float)(compass.m[2]);
     return v;
 }
 
@@ -67,20 +67,20 @@ vector Sensors::readAcc()
 {
     // Info about linear acceleration sensitivity from datasheets:
     //TODO
-    const float accel_scale = 0.000244;
+    const float accel_scale = 1;
 
     gyroacc.readAcc();
-    IMU::raw_a = int_vector_from_ints(&gyroacc.a);
-    return vector_from_ints(&gyroacc.a) * accel_scale;
+    IMU::raw_a << gyroacc.a[0], gyroacc.a[1], gyroacc.a[2];
+    return IMU::raw_a.cast<float>() * accel_scale;
 }
 
 vector Sensors::readGyro()
 {
     // Info about sensitivity from datasheets:
     // TODO
-    const float gyro_scale = 0.07 * 3.14159265 / 180;
+    const float gyro_scale = 1;
 
     gyroacc.readGyro();
-    IMU::raw_g = int_vector_from_ints(&gyroacc.g);
-    return ( vector_from_ints(&gyroacc.g) - gyro_offset ) * gyro_scale;
+    IMU::raw_g << gyroacc.g[0], gyroacc.g[1], gyroacc.g[2];
+    return IMU::raw_g.cast<float>() * gyro_scale;
 }
