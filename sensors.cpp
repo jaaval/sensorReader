@@ -80,7 +80,7 @@ vector Sensors::readGyro()
     // TODO
     const float gyro_scale = 0.07 * 3.14159265 / 180;
 
-    gyroacc.read();
+    gyroacc.readGyro();
     IMU::raw_g = int_vector_from_ints(&gyroacc.g);
     return ( vector_from_ints(&gyroacc.g) - gyro_offset ) * gyro_scale;
 }
