@@ -3,6 +3,7 @@
 #include <iostream>
 #include <chrono>
 #include "Eigen/Core"
+#include <stdlib>
 
 
 void run(IMU &imu) {
@@ -20,6 +21,9 @@ void run(IMU &imu) {
 		std::cout << "Mag: " << time << " " << samplevec << std::endl;
 		samplevec = imu.readGyro();
 		std::cout << "Gyro: " << time << " " << samplevec << std::endl;
+		sleep(500); 
+
+
 		i++;
 	}
 
