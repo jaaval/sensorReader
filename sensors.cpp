@@ -1,5 +1,5 @@
 #include "vector.h"
-#include "Sensors.h"
+#include "sensors.h"
 #include "exceptions.h"
 #include <stdio.h>
 #include <unistd.h>
