@@ -21,7 +21,7 @@ void run(IMU &imu) {
 		std::cout << "Mag: " << time << " " << samplevec << std::endl;
 		samplevec = imu.readGyro();
 		std::cout << "Gyro: " << time << " " << samplevec << std::endl;
-		sleep(0.5); 
+		sleep(1); 
 
 
 		i++;
