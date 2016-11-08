@@ -1,6 +1,9 @@
 #ifndef LIS3MDL_h
 #define LIS3MDL_h
 
+#include <stdint.h>
+#include "I2CBus.h"
+
 
 class LIS3MDL
 {

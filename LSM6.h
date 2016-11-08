@@ -1,6 +1,8 @@
 #ifndef LSM6_h
 #define LSM6_h
 
+#include <stdint.h>
+#include "I2CBus.h"
 
 class LSM6
 {
