@@ -7,19 +7,19 @@
 
 void run(IMU &imu) {
 
-	auto time = std::chrono::high_resolution_clock::now();
+	auto time0 = std::chrono::high_resolution_clock::now();
+	auto time = time0;
 	Eigen::Vector3f samplevec;
 
 	int i = 0;
 	while (i < 1000) {
-		time = std::chrono::high_resolution_clock::now();
-
+		time = std::chrono::high_resolution_clock::now() - time0;
 		samplevec = imu.readAcc();
-		std::cout << "Acc: " << std::chrono::duration_cast<std::chrono::seconds>(time) << " " << samplevec << std::endl;
+		std::cout << "Acc: " << time.count() << " " << samplevec << std::endl;
 		samplevec = imu.readMag();
-		std::cout << "Mag: " << std::chrono::duration_cast<std::chrono::seconds>(time) << " " << samplevec << std::endl;
+		std::cout << "Mag: " << time.count() << " " << samplevec << std::endl;
 		samplevec = imu.readGyro();
-		std::cout << "Gyro: " << std::chrono::duration_cast<std::chrono::seconds>(time) << " " << samplevec << std::endl;
+		std::cout << "Gyro: " << time.count() << " " << samplevec << std::endl;
 		i++;
 	}
 
