@@ -15,7 +15,7 @@
 // Constructors ////////////////////////////////////////////////////////////////
 
 LSM6::LSM6(const char * i2cDeviceName):
-  i2c(devicename)
+  i2c(i2cDeviceName)
 {
   _device = device_auto;
   init();
