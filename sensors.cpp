@@ -15,6 +15,7 @@ Sensors::Sensors(const char * i2cDeviceName) :
     mag_scale = 12 *100.0/32767.0;                   // scaling values are dependent on the sensor settings 
     acc_scale = 2 *9.80665/32767.0;                  // scaling values are dependent on the sensor settings
     gyro_scale = 1000.0 /360.0 *(2*PI) /32767.0;     // scaling values are dependent on the sensor settings
+
 }
 
 void Sensors::enable()
@@ -58,6 +59,6 @@ Eigen::Vector3f Sensors::readGyro()
 
 double Sensors::readTime()
 {
-    long temp = timenow.duration.count();
+    long temp = timenow.time_since_epoch().count();
     return 1e-9 * temp;
 }
