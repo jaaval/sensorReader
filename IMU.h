@@ -17,7 +17,7 @@ public:
     Eigen::Vector3i gyro_bias;
     float gyro_scale;
     float mag_scale;
-    float acc_scale; 
+    float accel_scale; 
     int_vector mag_min, mag_max;
 
     int_vector raw_m, raw_a, raw_g;
