@@ -25,6 +25,7 @@ protected:
     float acc_scale; 
 
     std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::nanoseconds> time0;
+    std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::nanoseconds> lasttime;
 
 };
 
