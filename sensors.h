@@ -12,9 +12,10 @@ public:
     LSM6 gyroacc;
     LIS3MDL compass;
 
-    virtual vector readAcc();
-    virtual vector readMag();
-    virtual vector readGyro();
+    virtual Eigen::Vector3f readAcc();
+    virtual Eigen::Vector3f readMag();
+    virtual Eigen::Vector3f readGyro();
+    virtual double readTime();
 
     virtual void enable();
     virtual void measureOffsets();

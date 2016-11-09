@@ -22,7 +22,7 @@ public:
         return tryReadByte(command);
     }
 
-    uint8_t _getAddress() {return _address;}
+    uint8_t _getAddress() {return _address;} //debugging
 private:
     int fd;
     uint8_t _address; // this is for debugging

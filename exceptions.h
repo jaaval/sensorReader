@@ -1,5 +1,5 @@
-#ifndef _AHRS_EXCEPTIONS_H
-#define _AHRS_EXCEPTIONS_H
+#ifndef _EXCEPTIONS_H
+#define _EXCEPTIONS_H
 
 #include <cerrno>
 #include <system_error>

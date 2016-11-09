@@ -2,8 +2,6 @@
 #include <math.h>
 #include "I2CBus.h"
 #include <cassert>
-#include <iostream> //debug
-#include <bitset> //debug
 
 // Defines ////////////////////////////////////////////////////////////////
 

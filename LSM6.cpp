@@ -1,8 +1,6 @@
 #include "LSM6.h"
 #include <math.h>
 #include <cassert>
-#include <iostream> //debug
-#include <bitset> //debug
 
 // Defines ////////////////////////////////////////////////////////////////
 

@@ -9,20 +9,20 @@
 
 void run(IMU &imu) {
 
-	std::time_t time0 = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-	std::time_t time = time0;
 	Eigen::Vector3f samplevec;
-
+	double time;
 	imu.enable();
 	sleep(1); 
 	int i = 0;
 	while (i < 100000) {
-		time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()) - time0;
 		samplevec = imu.readMag();
+		time = imu.readTime();
 		std::cout << "Mag: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
 		samplevec = imu.readAcc();
+		time = imu.readTime();
 		std::cout << "Acc: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
 		samplevec = imu.readGyro();
+		time = imu.readTime();
 		std::cout << "Gyro: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
 		usleep(200000); 
 
