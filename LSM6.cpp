@@ -124,7 +124,7 @@ void LSM6::readAcc(void)
 
   
   uint8_t block[6];
-  i2c.readBlock(0x80 | OUTX_L_XL, sizeof(block), block);
+  i2c.readBlock(OUTX_L_XL, sizeof(block), block);
   std::cout << std::bitset<8>(block[0]) << std::endl;
 
   block[0] = i2c.readByte(OUTX_L_XL);
