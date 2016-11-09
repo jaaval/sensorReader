@@ -26,6 +26,7 @@ protected:
 
     std::chrono::time_point<std::chrono::steady_clock, std::chrono::microseconds> time0;
     std::chrono::time_point<std::chrono::steady_clock, std::chrono::microseconds> lasttime;
+    long steadytime;
 
 };
 

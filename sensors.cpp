@@ -17,6 +17,7 @@ Sensors::Sensors(const char * i2cDeviceName) :
     gyro_scale = 1000.0 /360.0 *(2*PI) /32767.0;     // scaling values are dependent on the sensor settings
     time0 = std::chrono::steady_clock::now();
     lasttime = std::chrono::steady_clock::now();
+    steadytime = 0;
 }
 
 void Sensors::enable()
@@ -61,5 +62,8 @@ Eigen::Vector3f Sensors::readGyro()
 double Sensors::readTime()
 {
     long temp = (lasttime-time0).count();
-    return 1e-6 * temp;
+    if (temp < steadytime) {
+        steadytime = steadytime+temp;
+    }
+    return 1e-6 * temp+steadytime;
 }
