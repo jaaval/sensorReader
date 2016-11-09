@@ -61,7 +61,7 @@ Eigen::Vector3f Sensors::readGyro()
 
 double Sensors::readTime()
 {
-    long temp = (lasttime-time0).count();
+    long temp = std::chrono::duration_cast<std::chrono::milliseconds>(lasttime-time0).count();
     //if (temp < 0) {
     //    time0 = lasttime;
     //    temp = 0;

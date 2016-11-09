@@ -24,8 +24,8 @@ protected:
     float mag_scale;
     float acc_scale; 
 
-    std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> time0;
-    std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> lasttime;
+    std::chrono::steady_clock::time_point time0;
+    std::chrono::steady_clock::time_point lasttime;
 
 };
 
