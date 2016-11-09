@@ -86,6 +86,7 @@ class LSM6
 
     int a[3]; // accelerometer readings
     int g[3]; // gyro readings
+    long timestamp; // sensor timestamp
 
 
     LSM6(const char * i2cDeviceName);
@@ -102,6 +103,7 @@ class LSM6
 
     void readAcc(void);
     void readGyro(void);
+    void readTime();
     void read(void);
 
 

@@ -18,6 +18,7 @@ LSM6::LSM6(const char * i2cDeviceName):
   i2c(i2cDeviceName)
 {
   _device = device_auto;
+  timestamp = 0;
   assert(init());
 }
 
@@ -147,6 +148,13 @@ void LSM6::readGyro(void)
     g[1] = (int16_t)(block[3] << 8 | block[2]);
     g[2] = (int16_t)(block[5] << 8 | block[4]);
   }
+}
+
+void LSM6::readTime() 
+{
+  uint8_t block[3];
+  i2c.readBlock(TIMESTAMP0_REG, sizeof(block), block);
+  timestamp = (long)(block[2] << 16 | block[1] << 8 | block[0]);
 }
 
 // Reads all 6 channels of the LSM6 and stores them in the object variables

@@ -44,18 +44,22 @@ Eigen::Vector3f Sensors::readMag()
 Eigen::Vector3f Sensors::readAcc()
 {
     gyroacc.readAcc();
+    gyroacc.readTime();
     raw_a << gyroacc.a[0], gyroacc.a[1], gyroacc.a[2];
     Eigen::Vector3f v = (raw_a).cast<float>() * acc_scale;
     lasttime = std::chrono::steady_clock::now();
+    std::cout << gyroacc.time << std::endl;
     return v;
 }
 
 Eigen::Vector3f Sensors::readGyro()
 {
     gyroacc.readGyro();
+    gyroacc.readTime();
     raw_g << gyroacc.g[0], gyroacc.g[1], gyroacc.g[2];
     Eigen::Vector3f v = (raw_g - gyro_bias).cast<float>() * gyro_scale;
     lasttime = std::chrono::steady_clock::now();
+    std::cout << gyroacc.time << std::endl;
     return v;
 }
 
