@@ -24,6 +24,7 @@ void I2CBus::addressSet(uint8_t address)
     {
         throw posix_error("Failed to set address");
     }
+    _address = address;
 }
 
 void I2CBus::writeByte(uint8_t command, uint8_t data)

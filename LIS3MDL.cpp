@@ -68,7 +68,7 @@ bool LIS3MDL::init(deviceType device, sa1State sa1)
       break;
   }
   std::cout << "mag" << std::endl;
-  std::cout << std::bitset<8>(address) << std::endl;
+  std::cout << std::bitset<8>(i2c._getAddress()) << std::endl;
   return true;
 }
 

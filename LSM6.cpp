@@ -64,7 +64,7 @@ bool LSM6::init(deviceType device, sa0State sa0)
       break;
   }
   std::cout << "gyroacc" << std::endl;
-  std::cout << std::bitset<8>(address) << std::endl;
+  std::cout << std::bitset<8>(i2c._getAddress()) << std::endl;
   return true;
 }
 

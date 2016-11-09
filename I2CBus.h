@@ -22,8 +22,10 @@ public:
         return tryReadByte(command);
     }
 
+    uint8_t _getAddress() {return _address;}
 private:
     int fd;
+    uint8_t _address; // this is for debugging
 };
 
 #endif
