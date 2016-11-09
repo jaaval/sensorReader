@@ -1,7 +1,7 @@
 #include "LSM6.h"
 #include <math.h>
 #include <cassert>
-//#include <iostream> //debug
+#include <iostream> //debug
 
 // Defines ////////////////////////////////////////////////////////////////
 
@@ -63,6 +63,8 @@ bool LSM6::init(deviceType device, sa0State sa0)
       break;
   }
 
+  std::cout << address << std::endl;
+  std::cout << device << std::endl;
   return true;
 }
 
@@ -101,7 +103,7 @@ void LSM6::enableDefault(void)
 
     // 0x04 = 0b00000100
     // IF_INC = 1 (automatically increment register address)
-    writeReg(CTRL3_C, 0x84); // test reboot memory
+    writeReg(CTRL3_C, 0x04); // test reboot memory
   }
 }
 

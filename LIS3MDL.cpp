@@ -85,9 +85,9 @@ void LIS3MDL::enableDefault(void)
 {
   if (_device == device_LIS3MDL)
   {
-    // 0x70 = 0b01110000
-    // OM = 11 (ultra-high-performance mode for X and Y); DO = 100 (10 Hz ODR)
-    writeReg(CTRL_REG1, 0x70);
+    // 0x78 = 0b01111000
+    // OM = 11 (ultra-high-performance mode for X and Y); DO = 110 (40 Hz ODR)
+    writeReg(CTRL_REG1, 0x78);
 
     // 0x00 = 0b00000000
     // FS = 00 (+/- 4 gauss full scale)
