@@ -139,6 +139,7 @@ void LSM6::readGyro(void)
 {
   uint8_t status = readReg(STATUS_REG);
   uint8_t mask = 0x02;
+  
   if (status & mask) {
     uint8_t block[6];
     i2c.readBlock(OUTX_L_G, sizeof(block), block);
