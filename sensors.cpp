@@ -29,7 +29,7 @@ void Sensors::measureOffsets()
     
 }
 
-vector Sensors::readMag()
+Eigen::Vector3f Sensors::readMag()
 {
     compass.read();
     raw_m << compass.m[0], compass.m[1], compass.m[2];
@@ -38,7 +38,7 @@ vector Sensors::readMag()
     return v;
 }
 
-vector Sensors::readAcc()
+Eigen::Vector3f Sensors::readAcc()
 {
     gyroacc.readAcc();
     raw_a << gyroacc.a[0], gyroacc.a[1], gyroacc.a[2];
@@ -47,7 +47,7 @@ vector Sensors::readAcc()
     return v;
 }
 
-vector Sensors::readGyro()
+Eigen::Vector3f Sensors::readGyro()
 {
     gyroacc.readGyro();
     raw_g << gyroacc.g[0], gyroacc.g[1], gyroacc.g[2];
