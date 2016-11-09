@@ -60,7 +60,7 @@ Eigen::Vector3f Sensors::readGyro()
 }
 
 // not implemented yet. No sensorchip class for barometer yet.
-double readBaro() {
+float readBaro() {
     return 0;
 }
 
