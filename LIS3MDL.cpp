@@ -91,9 +91,9 @@ void LIS3MDL::enableDefault(void)
     // OM = 11 (ultra-high-performance mode for X and Y); DO = 110 (40 Hz ODR)
     writeReg(CTRL_REG1, 0x78);
 
-    // 0x00 = 0b00000000
-    // FS = 00 (+/- 4 gauss full scale)
-    writeReg(CTRL_REG2, 0x00);
+    // 0x00 = 0b01000000
+    // FS = 40 (+/- 12 gauss full scale)
+    writeReg(CTRL_REG2, 0x40);
 
     // 0x00 = 0b00000000
     // MD = 00 (continuous-conversion mode)
@@ -122,12 +122,18 @@ uint8_t LIS3MDL::readReg(uint8_t reg)
 // Reads the 3 mag channels and stores them in vector m
 void LIS3MDL::read()
 {
-  uint8_t block[6];
-  i2c.readBlock(OUT_X_L, sizeof(block), block);
-  // combine high and low bytes
-  m[0] = (int16_t)(block[1] << 8 | block[0]);
-  m[1] = (int16_t)(block[3] << 8 | block[2]);
-  m[2] = (int16_t)(block[5] << 8 | block[4]);
+
+  uint8_t status = readReg(STATUS_REG);
+  uint8_t mask = 0x04; // every axis has new value
+
+  if (status & mask) {
+    uint8_t block[6];
+    i2c.readBlock(OUT_X_L, sizeof(block), block);
+    // combine high and low bytes
+    m[0] = (int16_t)(block[1] << 8 | block[0]);
+    m[1] = (int16_t)(block[3] << 8 | block[2]);
+    m[2] = (int16_t)(block[5] << 8 | block[4]);
+  }
 }
 
 // Private Methods //////////////////////////////////////////////////////////////
