@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <fstream>
+#include <climits>
 
 #define PI 3.1415926535897
 
@@ -65,5 +66,9 @@ double Sensors::readTime()
     if (temp < steadytime) {
         steadytime = steadytime+temp;
     }
-    return 1e-6 * temp+steadytime;
+    if (steadytime > LONG_MAX-1000000) {
+        steadytime = 0;
+    }
+
+    return 1e-6 * (temp+steadytime);
 }
