@@ -16,6 +16,7 @@ public:
     virtual Eigen::Vector3f readMag();
     virtual Eigen::Vector3f readGyro();
     virtual double readTime();
+    virtual double readBaro();
 
     virtual void enable();
     virtual void measureOffsets();

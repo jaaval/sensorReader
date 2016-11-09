@@ -7,9 +7,10 @@
 class IMU {
 public:
     // Scaled readings
-    virtual Eigen::Vector3f readMag() = 0;  // In body coords, scaled to -1..1 range
-    virtual Eigen::Vector3f readAcc() = 0;  // In body coords, with units = g
+    virtual Eigen::Vector3f readMag() = 0;  // In body coords, with microteslas
+    virtual Eigen::Vector3f readAcc() = 0;  // In body coords, with units = m/s^2
     virtual Eigen::Vector3f readGyro() = 0; // In body coords, with units = rad/sec
+    virtual float readBaro() = 0;
     virtual double readTime() = 0;
     void read(){ readAcc(); readMag(); readGyro(); }
 

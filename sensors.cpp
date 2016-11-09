@@ -59,12 +59,17 @@ Eigen::Vector3f Sensors::readGyro()
     return v;
 }
 
+// not implemented yet. No sensorchip class for barometer yet.
+double readBaro() {
+    return 0;
+}
+
 double Sensors::readTime()
 {
-    double temp = std::chrono::duration<double, std::chrono::seconds>(lasttime-time0).count();
+    long temp = std::chrono::duration_cast<std::chrono::milliseconds>(lasttime-time0).count();
     if (temp < 0) {
         time0 = lasttime;
         temp = 0;
     }
-    return temp;
+    return 1e-3 * (temp);
 }
