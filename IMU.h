@@ -24,7 +24,7 @@ protected:
     float mag_scale;
     float acc_scale; 
 
-    std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::nanoseconds> timenow;
+    std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::nanoseconds> time0;
 
 };
 
