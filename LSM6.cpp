@@ -102,7 +102,7 @@ void LSM6::enableDefault(void)
 
     // 0x04 = 0b00000100
     // IF_INC = 1 (automatically increment register address)
-    writeReg(CTRL3_C, 0x00); // test reboot memory
+    writeReg(CTRL3_C, 0x04); // test reboot memory
   }
 }
 
@@ -128,7 +128,8 @@ void LSM6::readAcc(void)
   uint8_t block[6];
   i2c.readBlock(0x80 | OUTX_L_XL, sizeof(block), block);
 
-  std::bitset<8> testiC(block[0]); 
+  uint8_t testiA2 = i2c.readByte(OUTX_H_XL);
+  std::bitset<8> testiC(testiA2); 
   std::cout << testiC << std::endl;
 
   // combine high and low bytes
