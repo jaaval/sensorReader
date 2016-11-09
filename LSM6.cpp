@@ -113,35 +113,41 @@ void LSM6::writeReg(uint8_t reg, uint8_t value)
 
 uint8_t LSM6::readReg(uint8_t reg)
 {
-  uint8_t value;
-  i2c.readByte(reg);
-  return value;
+  return i2c.readByte(reg);
 }
 
 // Reads the 3 accelerometer channels and stores them in vector a
 void LSM6::readAcc(void)
 {
 
-  
-  uint8_t block[6];
-  i2c.readBlock(OUTX_L_XL, sizeof(block), block);
+  uint8_t status = readReg(STATUS_REG);
+  uint8_t mask = 0x01;
 
-  // combine high and low bytes
-  a[0] = (int16_t)(block[1] << 8 | block[0]);
-  a[1] = (int16_t)(block[3] << 8 | block[2]);
-  a[2] = (int16_t)(block[5] << 8 | block[4]);
+  if (status & mask) {
+    uint8_t block[6];
+    i2c.readBlock(OUTX_L_XL, sizeof(block), block);
+
+    // combine high and low bytes
+    a[0] = (int16_t)(block[1] << 8 | block[0]);
+    a[1] = (int16_t)(block[3] << 8 | block[2]);
+    a[2] = (int16_t)(block[5] << 8 | block[4]);
+  }
 }
 
 // Reads the 3 gyro channels and stores them in vector g
 void LSM6::readGyro(void)
 {
-  uint8_t block[6];
-  i2c.readBlock(OUTX_L_G, sizeof(block), block);
+  uint8_t status = readReg(STATUS_REG);
+  uint8_t mask = 0x02;
+  if (status & mask) {
+    uint8_t block[6];
+    i2c.readBlock(OUTX_L_G, sizeof(block), block);
 
-  // combine high and low bytes
-  g[0] = (int16_t)(block[1] << 8 | block[0]);
-  g[1] = (int16_t)(block[3] << 8 | block[2]);
-  g[2] = (int16_t)(block[5] << 8 | block[4]);
+    // combine high and low bytes
+    g[0] = (int16_t)(block[1] << 8 | block[0]);
+    g[1] = (int16_t)(block[3] << 8 | block[2]);
+    g[2] = (int16_t)(block[5] << 8 | block[4]);
+  }
 }
 
 // Reads all 6 channels of the LSM6 and stores them in the object variables
