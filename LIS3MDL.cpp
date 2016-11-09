@@ -67,8 +67,7 @@ bool LIS3MDL::init(deviceType device, sa1State sa1)
       address = (sa1 == sa1_high) ? LIS3MDL_SA1_HIGH_ADDRESS : LIS3MDL_SA1_LOW_ADDRESS;
       break;
   }
-  std::cout << "mag" << std::endl;
-  std::cout << std::bitset<8>(i2c._getAddress()) << std::endl;
+  
   return true;
 }
 

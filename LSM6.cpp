@@ -63,8 +63,7 @@ bool LSM6::init(deviceType device, sa0State sa0)
       address = (sa0 == sa0_high) ? DS33_SA0_HIGH_ADDRESS : DS33_SA0_LOW_ADDRESS;
       break;
   }
-  std::cout << "gyroacc" << std::endl;
-  std::cout << std::bitset<8>(i2c._getAddress()) << std::endl;
+
   return true;
 }
 
@@ -122,6 +121,10 @@ uint8_t LSM6::readReg(uint8_t reg)
 // Reads the 3 accelerometer channels and stores them in vector a
 void LSM6::readAcc(void)
 {
+  uint8_t testiA = i2c.readByte(OUTX_L_XL);
+  std::bitset<8> testiB(testiA); 
+  std::cout << testiB << std::endl;
+  
   uint8_t block[6];
   i2c.readBlock(0x80 | OUTX_L_XL, sizeof(block), block);
 
