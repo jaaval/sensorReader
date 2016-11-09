@@ -12,6 +12,8 @@ void run(IMU &imu) {
 	std::time_t time = time0;
 	Eigen::Vector3f samplevec;
 
+	imu.enable();
+
 	int i = 0;
 	while (i < 1000) {
 		time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()) - time0;
