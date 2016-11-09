@@ -67,7 +67,7 @@ bool LIS3MDL::init(deviceType device, sa1State sa1)
       address = (sa1 == sa1_high) ? LIS3MDL_SA1_HIGH_ADDRESS : LIS3MDL_SA1_LOW_ADDRESS;
       break;
   }
-  
+
   return true;
 }
 
@@ -122,9 +122,8 @@ uint8_t LIS3MDL::readReg(uint8_t reg)
 // Reads the 3 mag channels and stores them in vector m
 void LIS3MDL::read()
 {
-  //0x80 | OUT_X_L
   uint8_t block[6];
-  i2c.readBlock(0x80 | OUT_X_L, sizeof(block), block);
+  i2c.readBlock(OUT_X_L, sizeof(block), block);
   // combine high and low bytes
   m[0] = (int16_t)(block[1] << 8 | block[0]);
   m[1] = (int16_t)(block[3] << 8 | block[2]);
