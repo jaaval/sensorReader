@@ -1,6 +1,7 @@
 #include "LSM6.h"
 #include <math.h>
 #include <cassert>
+#include <iostream> //debug
 
 // Defines ////////////////////////////////////////////////////////////////
 
@@ -9,7 +10,6 @@
 #define DS33_SA0_HIGH_ADDRESS 0b1101011
 #define DS33_SA0_LOW_ADDRESS  0b1101010
 
-#define TEST_REG_ERROR -1
 
 #define DS33_WHO_ID    0x69
 
@@ -83,7 +83,6 @@ the registers it writes to.
 */
 void LSM6::enableDefault(void)
 {
-  assert(_device == device_DS33);
   if (_device == device_DS33)
   {
 

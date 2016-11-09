@@ -55,7 +55,11 @@ vector Sensors::readAcc()
 
     gyroacc.readAcc();
     IMU::raw_a << gyroacc.a[0], gyroacc.a[1], gyroacc.a[2];
-    return IMU::raw_a.cast<float>() * accel_scale;
+    vector v;
+    v(0) = (float)(gyroacc.a[0]);
+    v(1) = (float)(gyroacc.a[1]);
+    v(2) = (float)(gyroacc.a[2]);
+    return v;
 }
 
 vector Sensors::readGyro()
@@ -66,5 +70,9 @@ vector Sensors::readGyro()
 
     gyroacc.readGyro();
     IMU::raw_g << gyroacc.g[0], gyroacc.g[1], gyroacc.g[2];
-    return IMU::raw_g.cast<float>() * gyro_scale;
+    vector v;
+    v(0) = (float)(gyroacc.g[0]);
+    v(1) = (float)(gyroacc.g[1]);
+    v(2) = (float)(gyroacc.g[2]);
+    return v;
 }
