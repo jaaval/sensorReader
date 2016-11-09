@@ -15,7 +15,6 @@ Sensors::Sensors(const char * i2cDeviceName) :
 void Sensors::enable()
 {
     compass.enable();
-    sleep(1);
     gyroacc.enable();
 }
 
