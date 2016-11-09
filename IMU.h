@@ -10,6 +10,7 @@ public:
     virtual Eigen::Vector3f readMag() = 0;  // In body coords, scaled to -1..1 range
     virtual Eigen::Vector3f readAcc() = 0;  // In body coords, with units = g
     virtual Eigen::Vector3f readGyro() = 0; // In body coords, with units = rad/sec
+    virtual double readTime() = 0;
     void read(){ readAcc(); readMag(); readGyro(); }
 
     virtual void measureOffsets() = 0;
