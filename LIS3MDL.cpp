@@ -2,6 +2,7 @@
 #include <math.h>
 #include "I2CBus.h"
 #include <cassert>
+#include <iostream> //debug
 
 // Defines ////////////////////////////////////////////////////////////////
 
@@ -65,7 +66,9 @@ bool LIS3MDL::init(deviceType device, sa1State sa1)
       address = (sa1 == sa1_high) ? LIS3MDL_SA1_HIGH_ADDRESS : LIS3MDL_SA1_LOW_ADDRESS;
       break;
   }
-
+  std::cout << "mag" << std::endl;
+  std::cout << address << std::endl;
+  std::cout << device << std::endl;
   return true;
 }
 

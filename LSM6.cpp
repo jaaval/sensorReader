@@ -62,7 +62,7 @@ bool LSM6::init(deviceType device, sa0State sa0)
       address = (sa0 == sa0_high) ? DS33_SA0_HIGH_ADDRESS : DS33_SA0_LOW_ADDRESS;
       break;
   }
-
+  std::cout << "gyroacc" << std::endl;
   std::cout << address << std::endl;
   std::cout << device << std::endl;
   return true;
