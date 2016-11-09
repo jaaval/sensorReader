@@ -19,6 +19,7 @@ Sensors::Sensors(const char * i2cDeviceName) :
     time0 = std::chrono::steady_clock::now();
     lasttime = std::chrono::steady_clock::now();
     steadytime = 0;
+    std::cout << LONG_MAX << std::endl;
 }
 
 void Sensors::enable()
@@ -70,5 +71,5 @@ double Sensors::readTime()
         steadytime = 0;
     }
 
-    return 1e-6 * (temp+steadytime);
+    return 1e-9 * (temp+steadytime);
 }
