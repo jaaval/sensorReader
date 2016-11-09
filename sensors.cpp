@@ -62,6 +62,9 @@ Eigen::Vector3f Sensors::readGyro()
 double Sensors::readTime()
 {
     long temp = (lasttime-time0).count();
+    if (temp < 0) {
+        time0 = lasttime;
+    }
 
-    return 1e-6 * (temp);
+    return 1e-3 * (temp);
 }
