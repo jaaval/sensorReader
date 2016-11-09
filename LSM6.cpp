@@ -128,6 +128,9 @@ void LSM6::readAcc(void)
   uint8_t block[6];
   i2c.readBlock(0x80 | OUTX_L_XL, sizeof(block), block);
 
+  std::bitset<8> testiC(block[0]); 
+  std::cout << testiC << std::endl;
+
   // combine high and low bytes
   a[0] = (int16_t)(block[1] << 8 | block[0]);
   a[1] = (int16_t)(block[3] << 8 | block[2]);
