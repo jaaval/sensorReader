@@ -2,6 +2,7 @@
 #include <math.h>
 #include <cassert>
 #include <iostream> //debug
+#include <bitset> //debug
 
 // Defines ////////////////////////////////////////////////////////////////
 
@@ -63,8 +64,7 @@ bool LSM6::init(deviceType device, sa0State sa0)
       break;
   }
   std::cout << "gyroacc" << std::endl;
-  std::cout << address << std::endl;
-  std::cout << device << std::endl;
+  std::cout << std::bitset<8>(address) << std::endl;
   return true;
 }
 

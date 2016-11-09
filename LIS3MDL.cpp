@@ -3,6 +3,7 @@
 #include "I2CBus.h"
 #include <cassert>
 #include <iostream> //debug
+#include <bitset> //debug
 
 // Defines ////////////////////////////////////////////////////////////////
 
@@ -67,8 +68,7 @@ bool LIS3MDL::init(deviceType device, sa1State sa1)
       break;
   }
   std::cout << "mag" << std::endl;
-  std::cout << address << std::endl;
-  std::cout << device << std::endl;
+  std::cout << std::bitset<8>(address) << std::endl;
   return true;
 }
 
