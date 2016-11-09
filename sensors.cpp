@@ -13,7 +13,7 @@ Sensors::Sensors(const char * i2cDeviceName) :
 {
     gyro_bias << -45, -102, -160;                   // This likely depends on the sensor settings.
     mag_scale = 1200.0/32767.0;                     // scaling values are dependent on the sensor settings
-    accel_scale = 2*9.80665/32767.0;                // scaling values are dependent on the sensor settings
+    acc_scale = 2*9.80665/32767.0;                // scaling values are dependent on the sensor settings
     gyro_scale = 1000.0/360.0 *(2*PI) /32767.0;     // scaling values are dependent on the sensor settings
 }
 
