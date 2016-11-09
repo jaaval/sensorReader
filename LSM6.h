@@ -87,7 +87,6 @@ class LSM6
     int a[3]; // accelerometer readings
     int g[3]; // gyro readings
 
-    uint8_t last_status; // status of last I2C transmission
 
     LSM6(const char * i2cDeviceName);
 

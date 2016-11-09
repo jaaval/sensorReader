@@ -85,7 +85,6 @@ void LSM6::enableDefault(void)
 {
   if (_device == device_DS33)
   {
-    std::cout << "enable done ok" << std::endl;
     // Accelerometer
 
     // 0x80 = 0b10000000
@@ -94,9 +93,9 @@ void LSM6::enableDefault(void)
 
     // Gyro
 
-    // 0x84 = 0b010000100
-    // ODR = 1000 (1.66 kHz (high performance)); FS_XL = 01 (500 dps)
-    writeReg(CTRL2_G, 0x84);
+    // 0x84 = 0b010001000
+    // ODR = 1000 (1.66 kHz (high performance)); FS_XL = 10 (1000 dps)
+    writeReg(CTRL2_G, 0x88);
 
     // Common
 
