@@ -102,7 +102,7 @@ void LSM6::enableDefault(void)
 
     // 0x04 = 0b00000100
     // IF_INC = 1 (automatically increment register address)
-    writeReg(CTRL3_C, 0x04); // test reboot memory
+    writeReg(CTRL3_C, 0x00); // test reboot memory
   }
 }
 
