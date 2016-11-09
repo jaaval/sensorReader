@@ -125,12 +125,6 @@ void LSM6::readAcc(void)
   
   uint8_t block[6];
   i2c.readBlock(OUTX_L_XL, sizeof(block), block);
-  std::cout << std::bitset<8>(block[0]) << std::endl;
-
-  block[0] = i2c.readByte(OUTX_L_XL);
-  block[1] = i2c.readByte(OUTX_H_XL);
-
-  std::cout << std::bitset<8>(block[0]) << std::endl;
 
   // combine high and low bytes
   a[0] = (int16_t)(block[1] << 8 | block[0]);
@@ -142,7 +136,7 @@ void LSM6::readAcc(void)
 void LSM6::readGyro(void)
 {
   uint8_t block[6];
-  i2c.readBlock(0x80 | OUTX_L_G, sizeof(block), block);
+  i2c.readBlock(OUTX_L_G, sizeof(block), block);
 
   // combine high and low bytes
   g[0] = (int16_t)(block[1] << 8 | block[0]);
