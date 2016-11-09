@@ -16,7 +16,7 @@ public:
     virtual void measureOffsets() = 0;
     virtual void enable() = 0;
 
-    int_vector raw_m, raw_a, raw_g;
+    Eigen::Vector3i raw_m, raw_a, raw_g;
 
 protected:
     Eigen::Vector3i gyro_bias;
