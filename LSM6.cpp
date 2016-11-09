@@ -83,8 +83,10 @@ the registers it writes to.
 */
 void LSM6::enableDefault(void)
 {
+  assert(_device == device_DS33);
   if (_device == device_DS33)
   {
+
     // Accelerometer
 
     // 0x80 = 0b10000000
@@ -93,9 +95,9 @@ void LSM6::enableDefault(void)
 
     // Gyro
 
-    // 0x80 = 0b010000000
-    // ODR = 1000 (1.66 kHz (high performance)); FS_XL = 00 (245 dps)
-    writeReg(CTRL2_G, 0x80);
+    // 0x84 = 0b010000100
+    // ODR = 1000 (1.66 kHz (high performance)); FS_XL = 01 (500 dps)
+    writeReg(CTRL2_G, 0x84);
 
     // Common
 
