@@ -18,13 +18,14 @@ void run(IMU &imu) {
 		samplevec = imu.readMag();
 		time = imu.readTime();
 		std::cout << "Mag: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
+		std::cout << "Magraw: " << time << " " << imu.raw_m(0) << " " << imu.raw_m(1) << " " << imu.raw_m(2) << std::endl;
 		samplevec = imu.readAcc();
 		time = imu.readTime();
 		std::cout << "Acc: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
 		samplevec = imu.readGyro();
 		time = imu.readTime();
 		std::cout << "Gyro: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
-		usleep(200000); 
+		usleep(500000); 
 
 
 		i++;
