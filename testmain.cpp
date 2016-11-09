@@ -17,10 +17,10 @@ void run(IMU &imu) {
 	int i = 0;
 	while (i < 1000) {
 		time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()) - time0;
-		samplevec = imu.readAcc();
-		std::cout << "Acc: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
 		samplevec = imu.readMag();
 		std::cout << "Mag: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
+		samplevec = imu.readAcc();
+		std::cout << "Acc: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
 		samplevec = imu.readGyro();
 		std::cout << "Gyro: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
 		sleep(1); 

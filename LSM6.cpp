@@ -85,7 +85,7 @@ void LSM6::enableDefault(void)
 {
   if (_device == device_DS33)
   {
-
+    std::cout << "enable done ok" << std::endl;
     // Accelerometer
 
     // 0x80 = 0b10000000
