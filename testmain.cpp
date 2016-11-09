@@ -4,6 +4,7 @@
 #include <chrono>
 #include "Eigen/Core"
 #include <cstdlib>
+#include <unistd.h>
 
 
 void run(IMU &imu) {
@@ -23,9 +24,7 @@ void run(IMU &imu) {
 		std::cout << "Acc: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
 		samplevec = imu.readGyro();
 		std::cout << "Gyro: " << time << " " << samplevec(0) << " " << samplevec(1) << " " << samplevec(2) << std::endl;
-
-		std::cout << "GyroRaw: " << time << " " << imu.raw_g(0) << " " << imu.raw_g(1) << " " << imu.raw_g(2) << std::endl;
-		sleep(1); 
+		usleep(100000); 
 
 
 		i++;

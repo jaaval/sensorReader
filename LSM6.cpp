@@ -87,21 +87,21 @@ void LSM6::enableDefault(void)
   {
     // Accelerometer
 
-    // 0x80 = 0b10000000
-    // ODR = 1000 (1.66 kHz (high performance)); FS_XL = 00 (+/-2 g full scale)
-    writeReg(CTRL1_XL, 0x80);
+    // 0x40 = 0b01000000
+    // ODR = 0100 (104 Hz (normal mode)); FS_XL = 00 (+/-2 g full scale)
+    writeReg(CTRL1_XL, 0x40);
 
     // Gyro
 
-    // 0x84 = 0b010001000
-    // ODR = 1000 (1.66 kHz (high performance)); FS_XL = 10 (1000 dps)
-    writeReg(CTRL2_G, 0x88);
+    // 0x48 = 0b001001000
+    // ODR = 0100 (104 Hz (normal mode)); FS_XL = 10 (1000 dps)
+    writeReg(CTRL2_G, 0x48);
 
     // Common
 
     // 0x04 = 0b00000100
     // IF_INC = 1 (automatically increment register address)
-    writeReg(CTRL3_C, 0x04);
+    writeReg(CTRL3_C, 0x84); // test reboot memory
   }
 }
 
