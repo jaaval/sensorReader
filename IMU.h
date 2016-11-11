@@ -18,7 +18,7 @@ public:
             magValues = {0,0,0,0};
             gyroValues = {0,0,0,0};
             accValues = {0,0,0,0};
-            bar0Values = {0,0};
+            baroValues = {0,0};
             rawMag = {0,0,0};
             rawAcc = {0,0,0};
             rawGyro = {0,0,0};
