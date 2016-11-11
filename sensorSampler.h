@@ -2,7 +2,6 @@
 #ifndef SENSORSAMPLER_H
 #define SENSORSAMPLER_H
 
-#include "sensor.hpp"
 
 class SensorSampler() {
 
