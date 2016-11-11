@@ -28,7 +28,7 @@ public:
     virtual void readAcc(Output &out) = 0;       // m/s^2
     virtual void readGyro(Output &out) = 0;      // rad/s
     virtual void readBaro(Output &out) = 0;
-    virtual float readTime() = 0;               // returns the timestamp from system clock
+    virtual float readTime() = 0;               // returns the timestamp
 
     virtual void measureOffsets() = 0;          // could be used to calibrate sensors but not implemented atm.
     virtual void enable() = 0;                  // this sets the sensor chip settings. Has to be run at some point in initialization.

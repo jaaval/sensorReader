@@ -109,8 +109,8 @@ bool LIS3MDL::read()
   std::cout << "mag status: " << (int)status << std::endl; 
   std::cout << "mag status: " << (status & 7) << std::endl; 
 
-  //if (status & 7) { // does not work for some reason. no idea why. should check if all the axis has new value
-  if (true) {
+  if (status & 7) { // does not work for some reason. no idea why. should check if all the axis has new value
+  //if (true) {
     uint8_t block[6];
     // (0x80 | OUT_X_L) when reading multiple bytes this sensor wants the MSB set to 1
     i2c.readBlock(0x80 | OUT_X_L, sizeof(block), block);
