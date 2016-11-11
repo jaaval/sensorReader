@@ -2,7 +2,6 @@
 #define _IMU_H
 
 #include <chrono>
-#include <array>
 
 /*
  *  The interface to read sensors
@@ -14,14 +13,14 @@ class IMU {
 public:
 
     struct Output {
-        float magValues[4]{};                     // sensor output is defined as [timestamp, sensorvalues ...]
-        float gyroValues[4]{};
-        float accValues[4]{};
-        float baroValues[2]{};
-        int rawMag[3]{};
-        int rawGyro[3]{};
-        int rawAcc[3]{};
-        int rawBaro[1]{};
+        float magValues[4];                     // sensor output is defined as [timestamp, sensorvalues ...]
+        float gyroValues[4];
+        float accValues[4];
+        float baroValues[2];
+        int rawMag[3];
+        int rawGyro[3];
+        int rawAcc[3];
+        int rawBaro[1];
     };
 
 
