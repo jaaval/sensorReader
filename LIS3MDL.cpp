@@ -98,9 +98,7 @@ void LIS3MDL::writeReg(uint8_t reg, uint8_t value)
 // Reads a mag register
 uint8_t LIS3MDL::readReg(uint8_t reg)
 {
-  uint8_t value;
-  i2c.readByte(reg);
-  return value;
+  return i2c.readByte(reg);
 }
 
 // Reads the 3 mag channels and stores them in vector m
@@ -108,7 +106,7 @@ void LIS3MDL::read()
 {
 
   uint8_t status = readReg(STATUS_REG);
-  std::cout << "mag status: " << status << std::endl; 
+  std::cout << "mag status: " << (int)status << std::endl; 
 
   //if (status & 7) { // does not work for some reason. no idea why. should check if all the axis has new value
   if (true) {
