@@ -74,6 +74,13 @@ void Altimu10v5::readBaro(Output &out) {
     out.baroValues = {t, 0};
 }
 
+void Altimu10v5::read(Output &out) {
+    if (magAvailable) readMag(out);
+    if (gyroAvailable) readGyro(out);
+    if (accAvailable) readAcc(out);
+    if (baroAvailable) readBaro(out);
+}
+
 float Altimu10v5::readTime()
 {
     lasttime = std::chrono::steady_clock::now();

@@ -37,10 +37,10 @@ public:
 
 
     // Scaled readings
-    virtual void readMag(Output out) = 0;       // microteslas
-    virtual void readAcc(Output out) = 0;       // m/s^2
-    virtual void readGyro(Output out) = 0;      // rad/s
-    virtual void readBaro(Output out) = 0;
+    virtual void readMag(Output &out) = 0;       // microteslas
+    virtual void readAcc(Output &out) = 0;       // m/s^2
+    virtual void readGyro(Output &out) = 0;      // rad/s
+    virtual void readBaro(Output &out) = 0;
     virtual float readTime() = 0;               // returns the timestamp from system clock
 
     virtual void measureOffsets() = 0;          // could be used to calibrate sensors but not implemented atm.

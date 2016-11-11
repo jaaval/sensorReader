@@ -26,12 +26,7 @@ public:
     void enable();
     void measureOffsets();
 
-    void read(Output &out) {
-        if (magAvailable) readMag(out);
-        if (gyroAvailable) readGyro(out);
-        if (accAvailable) readAcc(out);
-        if (baroAvailable) readBaro(out);
-    }
+    void read(Output &out);
 
 private:
     LSM6 gyroacc;
