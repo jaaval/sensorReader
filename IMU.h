@@ -2,7 +2,6 @@
 #define _IMU_H
 
 #include <chrono>
-#include <vector>
 
 /*
  *  The interface to read sensors
@@ -25,14 +24,14 @@ public:
             rawBaro = {0};
         }
 
-        std::vector<float> magValues;                     // sensor output is defined as [timestamp, sensorvalues ...]
-        std::vector<float> gyroValues;
-        std::vector<float> accValues;
-        std::vector<float> baroValues;
-        std::vector<int> rawMag;
-        std::vector<int> rawGyro;
-        std::vector<int> rawAcc;
-        std::vector<int> rawBaro;
+        float magValues[4];                     // sensor output is defined as [timestamp, sensorvalues ...]
+        float gyroValues[4];
+        float accValues[4];
+        float baroValues[2];
+        int rawMag[3];
+        int rawGyro[3];
+        int rawAcc[3];
+        int rawBaro[1];
     };
 
 
