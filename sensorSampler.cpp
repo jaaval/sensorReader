@@ -37,19 +37,19 @@ void SensorSampler::run() {
 		if (std::chrono::duration_cast<std::chrono::milliseconds>(t-magtime).count() >= magdt) {
 			magtime = t;
 			std::cout << "Mag: " << out.magValues[0] << " " << out.magValues[1] << " " << out.magValues[2] << " " << out.magValues[3] << std::endl;
-			myfile << out.magValues[0] << " " << 5 << " " << out.magValues[1] << " " << out.magValues[2] << " " << out.magValues[3] << std::endl;
+			myfile << out.magValues[0] << ", " << 5 << ", " << out.magValues[1] << "," << out.magValues[2] << ", " << out.magValues[3] << std::endl;
 		}
 
 		if (std::chrono::duration_cast<std::chrono::milliseconds>(t-gyrotime).count() >= gyrodt) {
 			gyrotime = t;
 			std::cout << "Acc: " << out.accValues[0] << " " << out.accValues[1] << " " << out.accValues[2] << " " << out.accValues[3] << std::endl;
-			myfile << out.accValues[0] << " " << 3 << " " << out.accValues[1] << " " << out.accValues[2] << " " << out.accValues[3] << std::endl;
+			myfile << out.accValues[0] << ", " << 3 << ", " << out.accValues[1] << ", " << out.accValues[2] << ", " << out.accValues[3] << std::endl;
 		}
 
 		if (std::chrono::duration_cast<std::chrono::milliseconds>(t-acctime).count() >= accdt) {
 			acctime = t;
 			std::cout << "Gyro: " << out.gyroValues[0] << " " << out.gyroValues[1] << " " << out.gyroValues[2] << " " << out.gyroValues[3] << std::endl;
-			myfile << out.gyroValues[0] << " " << 4 << " " << out.gyroValues[1] << " " << out.gyroValues[2] << " " << out.gyroValues[3] << std::endl;
+			myfile << out.gyroValues[0] << ", " << 4 << ", " << out.gyroValues[1] << ", " << out.gyroValues[2] << ", " << out.gyroValues[3] << std::endl;
 		}
 		//usleep(1000); 
 
