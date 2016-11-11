@@ -4,6 +4,10 @@
 #include <stdint.h>
 #include "exceptions.h"
 
+/*
+ *  this class is a lightweight wrapper for system i2c functions
+ */
+
 class I2CBus
 {
 public:
@@ -25,7 +29,7 @@ public:
     uint8_t _getAddress() {return _address;} //debugging
 private:
     int fd;
-    uint8_t _address; // this is for debugging
+    uint8_t _address; // this is for debugging. not needed in operation
 };
 
 #endif

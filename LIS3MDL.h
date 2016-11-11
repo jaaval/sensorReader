@@ -4,6 +4,11 @@
 #include <stdint.h>
 #include "I2CBus.h"
 
+/**
+ *  class to implement interface to read LIS3MDL type of magnetometer sensor
+ *  @author jaava
+ */
+
 
 class LIS3MDL
 {
@@ -42,15 +47,18 @@ class LIS3MDL
 
     LIS3MDL(const char * i2cDeviceName);
 
+    // init sets the device address values or automatically finds the correct ones.
     bool init(deviceType device = device_auto, sa1State sa1 = sa1_auto);
     deviceType getDeviceType(void) { return _device; }
 
+    // enable sets the sensor settings. Needed to switch the device on
     void enable(void);
     void enableDefault(void);
 
     void writeReg(uint8_t reg, uint8_t value);
     uint8_t readReg(uint8_t reg);
 
+    // reads the magnetometer values from the chip
     void read(void);
 
 

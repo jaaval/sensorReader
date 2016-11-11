@@ -4,6 +4,11 @@
 #include <stdint.h>
 #include "I2CBus.h"
 
+/**
+ *  class to implement interface to read LSM6 type of gyro+acc sensor
+ *  @author jaava
+ */
+
 class LSM6
 {
   public:
@@ -91,9 +96,11 @@ class LSM6
 
     LSM6(const char * i2cDeviceName);
 
+    // init sets the device address values or automatically finds the correct ones.
     bool init(deviceType device = device_auto, sa0State sa0 = sa0_auto);
     deviceType getDeviceType(void) { return _device; }
 
+    // enable sets the sensor settings. Needed to switch the device on
     void enable(void);
     void enableDefault(void);
 
@@ -103,7 +110,9 @@ class LSM6
 
     void readAcc(void);
     void readGyro(void);
-    void readTime();
+    void readTime(); // sensor has some timestamp system too. this does not seem to work yet however
+
+    // reads both sensors (i.e. calls readAcc and readGyro)
     void read(void);
 
 

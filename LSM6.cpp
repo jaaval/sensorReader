@@ -2,9 +2,7 @@
 #include <math.h>
 #include <cassert>
 
-// Defines ////////////////////////////////////////////////////////////////
 
-// The Arduino two-wire interface uses a 7-bit number for the address,
 // and sets the last bit correctly based on reads and writes
 #define DS33_SA0_HIGH_ADDRESS 0b1101011
 #define DS33_SA0_LOW_ADDRESS  0b1101010
@@ -12,7 +10,6 @@
 
 #define DS33_WHO_ID    0x69
 
-// Constructors ////////////////////////////////////////////////////////////////
 
 LSM6::LSM6(const char * i2cDeviceName):
   i2c(i2cDeviceName)
@@ -22,7 +19,6 @@ LSM6::LSM6(const char * i2cDeviceName):
   assert(init());
 }
 
-// Public Methods //////////////////////////////////////////////////////////////
 
 
 bool LSM6::init(deviceType device, sa0State sa0)
@@ -70,17 +66,7 @@ bool LSM6::init(deviceType device, sa0State sa0)
 void LSM6::enable(void) {
   enableDefault();
 }
-/*
-Enables the LSM6's accelerometer and gyro. Also:
-- Sets sensor full scales (gain) to default power-on values, which are
-  +/- 2 g for accelerometer and 245 dps for gyro
-- Selects 1.66 kHz (high performance) ODR (output data rate) for accelerometer
-  and 1.66 kHz (high performance) ODR for gyro. (These are the ODR settings for
-  which the electrical characteristics are specified in the datasheet.)
-- Enables automatic increment of register address during multiple byte access
-Note that this function will also reset other settings controlled by
-the registers it writes to.
-*/
+
 void LSM6::enableDefault(void)
 {
   if (_device == device_DS33)
@@ -121,8 +107,8 @@ uint8_t LSM6::readReg(uint8_t reg)
 void LSM6::readAcc(void)
 {
 
-  uint8_t status = readReg(STATUS_REG);
-  uint8_t mask = 0x01;
+  uint8_t status = readReg(STATUS_REG); 
+  uint8_t mask = 0x01; // has new value
 
   if (status & mask) {
     uint8_t block[6];
@@ -139,7 +125,7 @@ void LSM6::readAcc(void)
 void LSM6::readGyro(void)
 {
   uint8_t status = readReg(STATUS_REG);
-  uint8_t mask = 0x02;
+  uint8_t mask = 0x02; // has new value
   
   if (status & mask) {
     uint8_t block[6];
@@ -159,14 +145,13 @@ void LSM6::readTime()
   timestamp = (long)(block[2] << 16 | block[1] << 8 | block[0]);
 }
 
-// Reads all 6 channels of the LSM6 and stores them in the object variables
+// Reads all channels of the LSM6 and stores them in the object variables
 void LSM6::read(void)
 {
   readAcc();
   readGyro();
 }
 
-// Private Methods //////////////////////////////////////////////////////////////
 
 int16_t LSM6::testReg(uint8_t devaddress, regAddr reg)
 {

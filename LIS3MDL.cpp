@@ -3,17 +3,13 @@
 #include "I2CBus.h"
 #include <cassert>
 
-// Defines ////////////////////////////////////////////////////////////////
 
-// The Arduino two-wire interface uses a 7-bit number for the address,
-// and sets the last bit correctly based on reads and writes
 #define LIS3MDL_SA1_HIGH_ADDRESS  0b0011110
 #define LIS3MDL_SA1_LOW_ADDRESS   0b0011100
 
 
 #define LIS3MDL_WHO_ID  0x3D
 
-// Constructors ////////////////////////////////////////////////////////////////
 
 LIS3MDL::LIS3MDL(const char * i2cDeviceName):
   i2c(i2cDeviceName)
@@ -23,9 +19,6 @@ LIS3MDL::LIS3MDL(const char * i2cDeviceName):
   assert(init());
   
 }
-
-// Public Methods //////////////////////////////////////////////////////////////
-
 
 
 bool LIS3MDL::init(deviceType device, sa1State sa1)
@@ -72,15 +65,7 @@ bool LIS3MDL::init(deviceType device, sa1State sa1)
 void LIS3MDL::enable(void) {
   enableDefault();
 }
-/*
-Enables the LIS3MDL's magnetometer. Also:
-- Selects ultra-high-performance mode for all axes
-- Sets ODR (output data rate) to default power-on value of 10 Hz
-- Sets magnetometer full scale (gain) to default power-on value of +/- 4 gauss
-- Enables continuous conversion mode
-Note that this function will also reset other settings controlled by
-the registers it writes to.
-*/
+
 void LIS3MDL::enableDefault(void)
 {
   if (_device == device_LIS3MDL)
@@ -122,16 +107,17 @@ void LIS3MDL::read()
 {
 
   uint8_t status = readReg(STATUS_REG);
-  uint8_t mask = 0x04; // every axis has new value
+  uint8_t mask = 0x08; // every axis has new value
 
-  //if (status & mask) {
+  if (status & mask) {
     uint8_t block[6];
+    // (0x80 | OUT_X_L) when reading multiple bytes this sensor wants the MSB set to 1
     i2c.readBlock(0x80 | OUT_X_L, sizeof(block), block);
     // combine high and low bytes
     m[0] = (int16_t)(block[1] << 8 | block[0]);
     m[1] = (int16_t)(block[3] << 8 | block[2]);
     m[2] = (int16_t)(block[5] << 8 | block[4]);
-  //}
+  }
 }
 
 // Private Methods //////////////////////////////////////////////////////////////
