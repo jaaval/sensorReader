@@ -45,8 +45,8 @@ void Altimu10v5::readMag(Output &out)
 {
     compass.read();
     float t = readTime();
-    out.rawMag = {compass.m[0],compass.m[1],compass.m[2]};
-    out.magValues = {t, compass.m[0]*mag_scale, compass.m[1]*mag_scale, compass.m[2]*mag_scale}; 
+    out.rawMag = int[3]{compass.m[0],compass.m[1],compass.m[2]};
+    out.magValues = float[4]{t, compass.m[0]*mag_scale, compass.m[1]*mag_scale, compass.m[2]*mag_scale}; 
 }
 
 void Altimu10v5::readAcc(Output &out)
@@ -54,8 +54,8 @@ void Altimu10v5::readAcc(Output &out)
     gyroacc.readAcc();
     gyroacc.readTime();
     float t = readTime();
-    out.rawAcc = {gyroacc.a[0], gyroacc.a[1], gyroacc.a[2]};
-    out.accValues = {t, gyroacc.a[0]*acc_scale, gyroacc.a[1]*acc_scale, gyroacc.a[2]*acc_scale}; 
+    out.rawAcc = int[3]{gyroacc.a[0], gyroacc.a[1], gyroacc.a[2]};
+    out.accValues = float[4]{t, gyroacc.a[0]*acc_scale, gyroacc.a[1]*acc_scale, gyroacc.a[2]*acc_scale}; 
 }
 
 void Altimu10v5::readGyro(Output &out)
@@ -63,15 +63,15 @@ void Altimu10v5::readGyro(Output &out)
     gyroacc.readGyro();
     gyroacc.readTime();
     float t = readTime();
-    out.rawGyro = {gyroacc.g[0], gyroacc.g[1], gyroacc.g[2]};
-    out.gyroValues = {t, (gyroacc.g[0]-gyro_bias[0])*gyro_scale, (gyroacc.g[1]-gyro_bias[1])*gyro_scale, (gyroacc.g[2]-gyro_bias[2])*gyro_scale}; 
+    out.rawGyro = int[3]{gyroacc.g[0], gyroacc.g[1], gyroacc.g[2]};
+    out.gyroValues = float[4]{t, (gyroacc.g[0]-gyro_bias[0])*gyro_scale, (gyroacc.g[1]-gyro_bias[1])*gyro_scale, (gyroacc.g[2]-gyro_bias[2])*gyro_scale}; 
 }
 
 // not implemented yet. No sensorchip class for barometer yet.
 void Altimu10v5::readBaro(Output &out) {
     float t = readTime();
-    out.rawBaro = {0};
-    out.baroValues = {t, 0};
+    out.rawBaro = int[1]{0};
+    out.baroValues = float[2]{t, 0};
 }
 
 void Altimu10v5::read(Output &out) {
