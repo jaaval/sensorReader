@@ -14,16 +14,16 @@ class IMU {
 public:
 
     struct Output {
-        Output():
-            magValues({0,0,0,0}),
-            gyroValues({0,0,0,0}),
-            accValues({0,0,0,0}),
-            baroValues({0,0}),
-            rawMag({0,0,0,0}),
-            rawGyro({0,0,0,0}),
-            rawAcc({0,0,0,0}),
-            rawBaro({0,0})
-        {}
+        Output() {
+            magValues = {0,0,0,0};
+            gyroValues = {0,0,0,0};
+            accValues = {0,0,0,0};
+            bar0Values = {0,0};
+            rawMag = {0,0,0};
+            rawAcc = {0,0,0};
+            rawGyro = {0,0,0};
+            rawBaro = {0};
+        }
 
         std::vector<float> magValues;                     // sensor output is defined as [timestamp, sensorvalues ...]
         std::vector<float> gyroValues;
