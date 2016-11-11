@@ -42,7 +42,7 @@ void SensorSampler::run() {
 			acctime = t;
 			std::cout << "Gyro: " << out.gyroValues[0] << " " << out.gyroValues[1] << " " << out.gyroValues[2] << " " << out.gyroValues[3] << std::endl;
 		}
-		usleep(1000); 
+		//usleep(1000); 
 
 		// push to cpa or something
 
