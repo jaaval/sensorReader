@@ -2,19 +2,15 @@
 #ifndef SENSORSAMPLER_H
 #define SENSORSAMPLER_H
 
+#include "IMU.h"
 
 class SensorSampler {
 
 public:
 
-	SensorSampler(IMU &imu_):
-		imu(imu_),
-		magsr(50),
-		gyrosr(100),
-		accsr(100)
-	{}
+	SensorSampler(IMU &imu_);
 
-	run();
+	void run();
 
 
 private:

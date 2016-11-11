@@ -1,11 +1,18 @@
 
 #include "sensorSampler.h"
 #include <chrono>
-#include "IMU.h"
 #include <unistd.h>
 
 
-SensorSampler::run() {
+SensorSampler::SensorSampler(IMU &imu_):
+	imu(imu_),
+	magsr(50),
+	gyrosr(100),
+	accsr(100)
+{}
+
+
+void SensorSampler::run() {
 	float magdt = 1000.0/magsr;
 	float gyrodt = 1000.0/gyrosr;
 	float accdt = 1000.0/accsr;
