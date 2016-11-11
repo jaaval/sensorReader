@@ -107,9 +107,8 @@ void LIS3MDL::read()
 {
 
   uint8_t status = readReg(STATUS_REG);
-  uint8_t mask = 0x07; // some axis has new value
 
-  if (status & mask) {
+  if (status & 1<<3) {
     uint8_t block[6];
     // (0x80 | OUT_X_L) when reading multiple bytes this sensor wants the MSB set to 1
     i2c.readBlock(0x80 | OUT_X_L, sizeof(block), block);

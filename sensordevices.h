@@ -15,7 +15,6 @@ class Altimu10v5 : public IMU {
 public:
     Altimu10v5(const char * i2cDeviceName);
 
-
     void readAcc(Output &out);
     void readMag(Output &out);
     void readGyro(Output &out);

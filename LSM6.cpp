@@ -108,9 +108,8 @@ void LSM6::readAcc(void)
 {
 
   uint8_t status = readReg(STATUS_REG); 
-  uint8_t mask = 0x01; // has new value
 
-  if (status & mask) {
+  if (status & 1) {
     uint8_t block[6];
     i2c.readBlock(OUTX_L_XL, sizeof(block), block);
 
@@ -125,9 +124,8 @@ void LSM6::readAcc(void)
 void LSM6::readGyro(void)
 {
   uint8_t status = readReg(STATUS_REG);
-  uint8_t mask = 0x02; // has new value
   
-  if (status & mask) {
+  if (status & 2) {
     uint8_t block[6];
     i2c.readBlock(OUTX_L_G, sizeof(block), block);
 
