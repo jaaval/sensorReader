@@ -2,7 +2,7 @@
 #ifndef SENSORSAMPLER_H
 #define SENSORSAMPLER_H
 
-#include "IMU.h"
+#include "sensordevices.h"
 
 class SensorSampler {
 
