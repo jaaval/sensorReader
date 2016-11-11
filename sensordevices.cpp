@@ -61,7 +61,7 @@ void Altimu10v5::readGyro(Output &out)
     gyroacc.readTime();
     float t = readTime();
     out.rawGyro = {gyroacc.g[0], gyroacc.g[1], gyroacc.g[2]};
-    out.gyroValues = {t, (gyroacc.g[0]-gyro_scale[0])*gyro_scale, (gyroacc.g[1]-gyro_scale[1])*gyro_scale, (gyroacc.g[2]-gyro_scale[2])*gyro_scale}; 
+    out.gyroValues = {t, (gyroacc.g[0]-gyro_bias[0])*gyro_scale, (gyroacc.g[1]-gyro_bias[1])*gyro_scale, (gyroacc.g[2]-gyro_bias[2])*gyro_scale}; 
 }
 
 // not implemented yet. No sensorchip class for barometer yet.
