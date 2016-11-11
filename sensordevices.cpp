@@ -17,11 +17,10 @@ Altimu10v5::Altimu10v5(const char * i2cDeviceName) :
     gyro_bias[1] = -102;
     gyro_bias[2] = -160;          
 
-
     // scaling values are dependent on the sensor settings 
-    mag_scale = 12 *100.0/32767.0;                   // 16bit max value is 12 gauss
-    acc_scale = 2 *9.80665/32767.0;                  // 16bit max value is 2g
-    gyro_scale = 1000.0 /360.0 *(2*PI) /32767.0;     // 16bit max value is 1000 deg/s
+    mag_scale = 12 *100.0/32768.0;                   // 16bit max value is 12 gauss
+    acc_scale = 2 *9.80665/32768.0;                  // 16bit max value is 2g
+    gyro_scale = 1000.0 /360.0 *(2*PI) /32768.0;     // 16bit max value is 1000 deg/s
     time0 = std::chrono::steady_clock::now();        // time0 is reinitialized when the clock runs over - happens a lot with small systems like raspi
     lasttime = std::chrono::steady_clock::now();
     magAvailable = true;

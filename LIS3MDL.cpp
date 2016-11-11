@@ -2,15 +2,11 @@
 #include <math.h>
 #include "I2CBus.h"
 #include <cassert>
-#include <iostream>
-
 
 #define LIS3MDL_SA1_HIGH_ADDRESS  0b0011110
 #define LIS3MDL_SA1_LOW_ADDRESS   0b0011100
 
-
 #define LIS3MDL_WHO_ID  0x3D
-
 
 LIS3MDL::LIS3MDL(const char * i2cDeviceName):
   i2c(i2cDeviceName)
@@ -20,7 +16,6 @@ LIS3MDL::LIS3MDL(const char * i2cDeviceName):
   assert(init());
   
 }
-
 
 bool LIS3MDL::init(deviceType device, sa1State sa1)
 {
@@ -106,10 +101,8 @@ bool LIS3MDL::read()
 {
 
   uint8_t status = readReg(STATUS_REG);
-  std::cout << "mag status: " << (int)status << std::endl; 
-  std::cout << "mag status: " << (status & 7) << std::endl; 
 
-  if (status & 7) { // does not work for some reason. no idea why. should check if all the axis has new value
+  if (status & 7) {
   //if (true) {
     uint8_t block[6];
     // (0x80 | OUT_X_L) when reading multiple bytes this sensor wants the MSB set to 1
@@ -123,8 +116,6 @@ bool LIS3MDL::read()
   }
   return false;
 }
-
-// Private Methods //////////////////////////////////////////////////////////////
 
 int16_t LIS3MDL::testReg(uint8_t devaddress, regAddr reg)
 {
