@@ -20,6 +20,7 @@ void SensorSampler::run() {
 	std::chrono::steady_clock::time_point gyrotime = std::chrono::steady_clock::now();
 	std::chrono::steady_clock::time_point acctime = std::chrono::steady_clock::now();
 	std::chrono::steady_clock::time_point magtime = std::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point t = std::chrono::steady_clock::now();
 
 	IMU::Output out;
 
