@@ -1,5 +1,6 @@
 
 #include "sensordevices.h"
+#include "sensorSampler.h"
 #include <iostream>
 #include <chrono>
 #include <cstdlib>

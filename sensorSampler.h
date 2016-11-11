@@ -3,7 +3,7 @@
 #define SENSORSAMPLER_H
 
 
-class SensorSampler() {
+class SensorSampler {
 
 public:
 
