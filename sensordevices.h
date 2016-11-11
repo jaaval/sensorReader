@@ -19,7 +19,7 @@ public:
     virtual void readAcc(Output &out);
     virtual void readMag(Output &out);
     virtual void readGyro(Output &out);
-    virtual void readBaro();
+    virtual void readBaro(Output &out);
 
     virtual float readTime();
 
