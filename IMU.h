@@ -59,7 +59,7 @@ public:
     bool hasBaro() {return baroAvailable;}
 
 protected:
-    int[3] gyro_bias;              // gyro offset from zero
+    int gyro_bias[3];              // gyro offset from zero
     
     // scaling values for sensor readings. The raw values are generally 16bit integers. 
     // these depend on the sensor settings (i.e. full range setting)
