@@ -37,21 +37,16 @@ public:
 
 
     // Scaled readings
-    virtual void readMag(Output out) = 0;             // microteslas
-    virtual void readAcc(Output out) = 0;             // m/s^2
-    virtual void readGyro(Output out) = 0;            // rad/s
+    virtual void readMag(Output out) = 0;       // microteslas
+    virtual void readAcc(Output out) = 0;       // m/s^2
+    virtual void readGyro(Output out) = 0;      // rad/s
     virtual void readBaro(Output out) = 0;
-    virtual float readTime() = 0;          // returns the timestamp from system clock
+    virtual float readTime() = 0;               // returns the timestamp from system clock
 
-    virtual void measureOffsets() = 0;      // could be used to calibrate sensors but not implemented atm.
-    virtual void enable() = 0;              // this sets the sensor chip settings. Has to be run at some point in initialization.
+    virtual void measureOffsets() = 0;          // could be used to calibrate sensors but not implemented atm.
+    virtual void enable() = 0;                  // this sets the sensor chip settings. Has to be run at some point in initialization.
     
-    void read(Output &out) {
-        if (magAvailable) readMag(out);
-        if (gyroAvailable) readGyro(out);
-        if (accAvailable) readAcc(out);
-        if (baroAvailable) readBaro(out);
-    }
+    virtual void read(Output &out) = 0;         //reads all the sensors to output
 
     bool hasMag() {return magAvailable;}
     bool hasGyro() {return gyroAvailable;}

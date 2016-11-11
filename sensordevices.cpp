@@ -70,7 +70,7 @@ void Altimu10v5::readGyro(Output &out)
 // not implemented yet. No sensorchip class for barometer yet.
 void Altimu10v5::readBaro(Output &out) {
     float t = readTime();
-    out.rawBaro = {t, 0};
+    out.rawBaro = {0};
     out.baroValues = {t, 0};
 }
 

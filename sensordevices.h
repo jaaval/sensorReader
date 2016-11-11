@@ -16,15 +16,22 @@ public:
     Altimu10v5(const char * i2cDeviceName);
 
 
-    virtual void readAcc(Output &out);
-    virtual void readMag(Output &out);
-    virtual void readGyro(Output &out);
-    virtual void readBaro(Output &out);
+    void readAcc(Output &out);
+    void readMag(Output &out);
+    void readGyro(Output &out);
+    void readBaro(Output &out);
 
-    virtual float readTime();
+    float readTime();
 
-    virtual void enable();
-    virtual void measureOffsets();
+    void enable();
+    void measureOffsets();
+
+    void read(Output &out) {
+        if (magAvailable) readMag(out);
+        if (gyroAvailable) readGyro(out);
+        if (accAvailable) readAcc(out);
+        if (baroAvailable) readBaro(out);
+    }
 
 private:
     LSM6 gyroacc;
