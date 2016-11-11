@@ -12,7 +12,10 @@ Altimu10v5::Altimu10v5(const char * i2cDeviceName) :
   compass(i2cDeviceName), gyroacc(i2cDeviceName)
 {
     // This likely depends on the sensor settings
-    gyro_bias = {-45,-102,-160};          
+    gyro_bias[0] = -45;
+    gyro_bias[1] = -102;
+    gyro_bias[2] = -160;          
+
 
     // scaling values are dependent on the sensor settings 
     mag_scale = 12 *100.0/32767.0;                   // 16bit max value is 12 gauss
