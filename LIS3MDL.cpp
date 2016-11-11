@@ -107,7 +107,7 @@ void LIS3MDL::read()
 
   uint8_t status = readReg(STATUS_REG);
   std::cout << "mag status: " << (int)status << std::endl; 
-  std::cout << "mag status: " << status & 7 << std::endl; 
+  std::cout << "mag status: " << (status & 7) << std::endl; 
 
   //if (status & 7) { // does not work for some reason. no idea why. should check if all the axis has new value
   if (true) {
