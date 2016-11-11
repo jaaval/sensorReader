@@ -2,6 +2,7 @@
 #include "sensorSampler.h"
 #include <chrono>
 #include <unistd.h>
+#include <iostream>
 
 
 SensorSampler::SensorSampler(const char* i2c):
