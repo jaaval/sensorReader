@@ -7,7 +7,7 @@ class SensorSampler {
 
 public:
 
-	SensorSampler(imu_):
+	SensorSampler(IMU &imu_):
 		imu(imu_),
 		magsr(50),
 		gyrosr(100),
