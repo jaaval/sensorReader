@@ -4,7 +4,8 @@
 #include <chrono>
 
 /*
- *  The interface to read sensors
+ *  The base class declaring the sensor reading functions
+ *  Write an implementation for different sensors
  *  @author jaava
  */
 
