@@ -2,7 +2,6 @@
 #include "sensordevices.h"
 #include <iostream>
 #include <chrono>
-#include "Eigen/Core"
 #include <cstdlib>
 #include <unistd.h>
 
