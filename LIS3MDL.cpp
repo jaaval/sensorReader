@@ -108,7 +108,7 @@ void LIS3MDL::read()
 
   uint8_t status = readReg(STATUS_REG);
 
-  if (status & 1<<3) {
+  //if (status & 1<<3) {
     uint8_t block[6];
     // (0x80 | OUT_X_L) when reading multiple bytes this sensor wants the MSB set to 1
     i2c.readBlock(0x80 | OUT_X_L, sizeof(block), block);
@@ -116,7 +116,7 @@ void LIS3MDL::read()
     m[0] = (int16_t)(block[1] << 8 | block[0]);
     m[1] = (int16_t)(block[3] << 8 | block[2]);
     m[2] = (int16_t)(block[5] << 8 | block[4]);
-  }
+  //}
 }
 
 // Private Methods //////////////////////////////////////////////////////////////
