@@ -29,8 +29,7 @@ void run(IMU &imu) {
 int main() {
 
 	std::string i2cdevice = "/dev/i2c-1";
-	Altimu10v5 imu(i2cdevice.c_str());
-	SensorSampler ss(imu);
+	SensorSampler ss(i2cdevice.c_str());
 	ss.run();
 	return 0;
 }

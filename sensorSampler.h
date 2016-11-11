@@ -8,18 +8,16 @@ class SensorSampler {
 
 public:
 
-	SensorSampler(IMU &imu_);
+	SensorSampler(const char* i2c);
 
 	void run();
 
 
 private:
-	IMU imu;
+	Altimu10v5 imu;
 	int magsr;
 	int gyrosr;
 	int accsr;
-
-
 };
 
 

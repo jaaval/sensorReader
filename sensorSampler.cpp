@@ -4,8 +4,8 @@
 #include <unistd.h>
 
 
-SensorSampler::SensorSampler(IMU &imu_):
-	imu(imu_),
+SensorSampler::SensorSampler(const char* i2c):
+	imu(i2c),
 	magsr(50),
 	gyrosr(100),
 	accsr(100)
