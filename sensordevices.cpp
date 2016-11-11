@@ -44,8 +44,8 @@ void Altimu10v5::measureOffsets()
 
 void Altimu10v5::readMag(Output &out)
 {
-    if (!compass.read();) return;
-    
+    if (!compass.read()) return;
+
     out.magValues[0] = readTime();
     std::copy(std::begin(compass.m),std::end(compass.m), out.rawMag); 
     for (int i = 0; i < 3; i++) {
@@ -66,7 +66,7 @@ void Altimu10v5::readAcc(Output &out)
 
 void Altimu10v5::readGyro(Output &out)
 {
-    if (!gyroacc.readGyro();) return;
+    if (!gyroacc.readGyro()) return;
 
     out.gyroValues[0] = readTime();
     std::copy(std::begin(gyroacc.g),std::end(gyroacc.g), out.rawGyro);

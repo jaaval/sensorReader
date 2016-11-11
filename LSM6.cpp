@@ -156,7 +156,7 @@ bool LSM6::read(void)
   bool a,b;
   a = readAcc();
   b = readGyro();
-  return a || b:
+  return a || b;
 }
 
 
