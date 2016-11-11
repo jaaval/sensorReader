@@ -112,7 +112,7 @@ void LIS3MDL::read()
   if (status & mask) {
     uint8_t block[6];
     // (0x80 | OUT_X_L) when reading multiple bytes this sensor wants the MSB set to 1
-    i2c.readBlock(0x80 | OUT_X_L, sizeof(block), block);
+    i2c.readBlock(OUT_X_L, sizeof(block), block);
     // combine high and low bytes
     m[0] = (int16_t)(block[1] << 8 | block[0]);
     m[1] = (int16_t)(block[3] << 8 | block[2]);
