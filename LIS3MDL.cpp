@@ -102,7 +102,7 @@ uint8_t LIS3MDL::readReg(uint8_t reg)
 }
 
 // Reads the 3 mag channels and stores them in vector m
-void LIS3MDL::read()
+bool LIS3MDL::read()
 {
 
   uint8_t status = readReg(STATUS_REG);
@@ -118,7 +118,10 @@ void LIS3MDL::read()
     m[0] = (int16_t)(block[1] << 8 | block[0]);
     m[1] = (int16_t)(block[3] << 8 | block[2]);
     m[2] = (int16_t)(block[5] << 8 | block[4]);
+    
+    return true;
   }
+  return false;
 }
 
 // Private Methods //////////////////////////////////////////////////////////////

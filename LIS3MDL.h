@@ -59,7 +59,7 @@ class LIS3MDL
     uint8_t readReg(uint8_t reg);
 
     // reads the magnetometer values from the chip
-    void read(void);
+    bool read(void);
 
 
 

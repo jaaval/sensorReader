@@ -108,12 +108,12 @@ class LSM6
     void writeReg(uint8_t reg, uint8_t value);
     uint8_t readReg(uint8_t reg);
 
-    void readAcc(void);
-    void readGyro(void);
+    bool readAcc(void);
+    bool readGyro(void);
     void readTime(); // sensor has some timestamp system too. this does not seem to work yet however
 
     // reads both sensors (i.e. calls readAcc and readGyro)
-    void read(void);
+    bool read(void);
 
 
 

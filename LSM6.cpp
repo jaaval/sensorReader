@@ -104,7 +104,7 @@ uint8_t LSM6::readReg(uint8_t reg)
 }
 
 // Reads the 3 accelerometer channels and stores them in vector a
-void LSM6::readAcc(void)
+bool LSM6::readAcc(void)
 {
 
   uint8_t status = readReg(STATUS_REG); 
@@ -117,11 +117,15 @@ void LSM6::readAcc(void)
     a[0] = (int16_t)(block[1] << 8 | block[0]);
     a[1] = (int16_t)(block[3] << 8 | block[2]);
     a[2] = (int16_t)(block[5] << 8 | block[4]);
+
+    return true;
   }
+
+  return false;
 }
 
 // Reads the 3 gyro channels and stores them in vector g
-void LSM6::readGyro(void)
+bool LSM6::readGyro(void)
 {
   uint8_t status = readReg(STATUS_REG);
   
@@ -133,7 +137,10 @@ void LSM6::readGyro(void)
     g[0] = (int16_t)(block[1] << 8 | block[0]);
     g[1] = (int16_t)(block[3] << 8 | block[2]);
     g[2] = (int16_t)(block[5] << 8 | block[4]);
+    return true;
   }
+
+  return false;
 }
 
 void LSM6::readTime() 
@@ -144,10 +151,12 @@ void LSM6::readTime()
 }
 
 // Reads all channels of the LSM6 and stores them in the object variables
-void LSM6::read(void)
+bool LSM6::read(void)
 {
-  readAcc();
-  readGyro();
+  bool a,b;
+  a = readAcc();
+  b = readGyro();
+  return a || b:
 }
 
 
