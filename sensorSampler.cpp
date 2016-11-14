@@ -15,9 +15,9 @@ SensorSampler::SensorSampler(const char* i2c):
 
 
 void SensorSampler::run() {
-	float magdt = 1000000.0/magsr;
-	float gyrodt = 1000000.0/gyrosr;
-	float accdt = 1000000.0/accsr;
+	float magdt = 1000000000.0/magsr;
+	float gyrodt = 1000000000.0/gyrosr;
+	float accdt = 1000000000.0/accsr;
 
 	std::chrono::steady_clock::time_point gyrotime = std::chrono::steady_clock::now();
 	std::chrono::steady_clock::time_point acctime = std::chrono::steady_clock::now();
