@@ -5,17 +5,23 @@
 #include <system_error>
 #include <string>
 
-static inline std::system_error posix_error()
+/**
+ * error constructors for sensors
+ * used to create i2c errors
+ * these can later be replaced with any logging stuff we want 
+ */
+
+static inline std::system_error sensors_error()
 {
     return std::system_error(errno, std::system_category());
 }
 
-static inline std::system_error posix_error(const char * what)
+static inline std::system_error sensors_error(const char * what)
 {
     return std::system_error(errno, std::system_category(), what);
 }
 
-static inline std::system_error posix_error(const std::string & what)
+static inline std::system_error sensors_error(const std::string & what)
 {
     return std::system_error(errno, std::system_category(), what);
 }

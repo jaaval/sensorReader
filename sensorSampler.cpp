@@ -31,7 +31,7 @@ void SensorSampler::run() {
 	assert(myfile.is_open());
 
 	int i = 0;
-	while (i < 10000) {
+	while (true) {
 		imu.read(out);
 		t = std::chrono::steady_clock::now();
 		if (std::chrono::duration_cast<std::chrono::milliseconds>(t-magtime).count() >= magdt) {
