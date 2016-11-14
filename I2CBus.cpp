@@ -8,7 +8,7 @@ I2CBus::I2CBus(const char * deviceName)
     fd = open(deviceName, O_RDWR);
     if (fd == -1)
     {
-        throw posix_error(std::string("Failed to open I2C device ") + deviceName);
+        throw sensors_error(std::string("Failed to open I2C device ") + deviceName);
     }
 }
 
