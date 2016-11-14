@@ -130,6 +130,7 @@ bool LSM6::readGyro(void)
   uint8_t status = readReg(STATUS_REG);
   
   if (status & 2) {
+    std::cout << "asdfasdfasdfasdfasdf" << std::endl;
     uint8_t block[6];
     i2c.readBlock(OUTX_L_G, sizeof(block), block);
 
