@@ -1,6 +1,7 @@
 #include "LSM6.h"
 #include <math.h>
 #include <cassert>
+#include <iostream>
 
 
 // and sets the last bit correctly based on reads and writes
