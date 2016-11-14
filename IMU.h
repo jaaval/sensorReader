@@ -19,14 +19,18 @@ public:
         float gyroValues[3];
         float accValues[3];
         float baroValues[1];
-        int rawMag[3];                          // raw nonscaled sensorvalues
+        int rawMag[3];                          // raw nonscaled sensorvalues. for debugging 
         int rawGyro[3];
         int rawAcc[3];
         int rawBaro[1];
-        uint64_t magTime;
+        uint64_t magTime;                       // timestamps
         uint64_t gyroTime;
         uint64_t accTime;
         uint64_t baroTime;
+        bool newMag;                            // flag for new sensor values in the struct
+        bool newGyro;
+        bool newAcc;
+        bool newBaro;
     };
 
     // Scaled readings

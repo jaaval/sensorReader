@@ -4,53 +4,56 @@
 #include <unistd.h>
 #include <cassert>
 #include <iostream>
+//#include "algorithm/manager.hpp"
 
 
 SensorSampler::SensorSampler(const char* i2c):
-	imu(i2c),
-	magsr(40),
-	gyrosr(100),
-	accsr(100)
+	imu(i2c)
 {}
 
 
 void SensorSampler::run() {
-	uint64_t magdt = 1000000000/magsr;
-	uint64_t gyrodt = 1000000000/gyrosr;
-	uint64_t accdt = 1000000000/accsr;
+	
+	uint64_t timesync = 1000000000; // 1 Hz dummy time sync. in this case the client and sensor times are really the same
 
-	std::chrono::steady_clock::time_point gyrotime = std::chrono::steady_clock::now();
-	std::chrono::steady_clock::time_point acctime = std::chrono::steady_clock::now();
-	std::chrono::steady_clock::time_point magtime = std::chrono::steady_clock::now();
-	std::chrono::steady_clock::time_point t = std::chrono::steady_clock::now();
+	
+	std::chrono::steady_clock::time_point synctime = std::chrono::steady_clock::now();
 
-	IMU::Output out;
+	IMU::Output out; // struct for storing sensor values
 	//cpa::algorithm::manager man;
 	//man.defineAvailableSensors(cpa::api::sensorAvailability::AVAILABLE_UNCALIBRATED,
 	//	cpa::api::sensorAvailability::AVAILABLE_UNCALIBRATED,
 	//	cpa::api::sensorAvailability::AVAILABLE_UNCALIBRATED,
 	//	cpa::api::sensorAvailability::AVAILABLE_NONE);
+	//man.setTime(synctime,synctime);
+
 
 	int i = 0;
 	while (true) {
 		imu.read(out);
-		t = std::chrono::steady_clock::now();
-		if (std::chrono::duration_cast<std::chrono::nanoseconds>(t-magtime).count() >= magdt) {
-			magtime = t;
+		//if (std::chrono::duration_cast<std::chrono::nanoseconds>(out.magTime-magtime).count() >= magdt) { 
+		if (out.newMag) {
 			//man.addSample(cpa::api::imuSensor::IMU_MAGNETOMETER, out.magTime, out.magValues[0], out.magValues[1], out.magValues[2]);
+			out.newMag = false;
 			std::cout << out.magTime<<" "<<out.magValues[0]<<" "<<out.magValues[1]<<" "<<out.magValues[2]<<std::endl;
 		}
 
-		if (std::chrono::duration_cast<std::chrono::nanoseconds>(t-gyrotime).count() >= gyrodt) {
-			gyrotime = t;
+		if (out.newGyro) {
 			//man.addSample(cpa::api::imuSensor::IMU_GYROSCOPE, out.gyroTime, out.gyroValues[0], out.gyroValues[1], out.gyroValues[2]);
 			std::cout << out.gyroTime<<" "<<out.gyroValues[0]<<" "<<out.gyroValues[1]<<" "<<out.gyroValues[2]<<std::endl;
+			out.newGyro = false;
 		}
 
-		if (std::chrono::duration_cast<std::chrono::nanoseconds>(t-acctime).count() >= accdt) {
-			acctime = t;
+		if (out.newAcc) {
 			//man.addSample(cpa::api::imuSensor::IMU_ACCELEROMETER, out.accTime, out.accValues[0], out.accValues[1], out.accValues[2]);
 			std::cout << out.accTime<<" "<<out.accValues[0]<<" "<<out.accValues[1]<<" "<<out.accValues[2]<<std::endl;
+			out.newAcc = false;
+		}
+
+		// this does not really do anything atm. 
+		if (std::chrono::duration_cast<std::chrono::nanoseconds>(out.accTime-synctime).count() >= timesync) {
+			synctime = out.accTime;
+			//man.setTime(synctime,synctime);
 		}
 		//usleep(1000); 
 

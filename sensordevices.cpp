@@ -51,6 +51,7 @@ void Altimu10v5::readMag(Output &out)
     for (int i = 0; i < 3; i++) {
         out.magValues[i] = compass.m[i]*mag_scale;
     }
+    out.newMag = true;
 }
 
 void Altimu10v5::readAcc(Output &out)
@@ -62,6 +63,7 @@ void Altimu10v5::readAcc(Output &out)
     for (int i = 0; i < 3; i++) {
         out.accValues[i] = gyroacc.a[i]*acc_scale;
     }
+    out.newAcc = true;
 }
 
 void Altimu10v5::readGyro(Output &out)
@@ -73,6 +75,7 @@ void Altimu10v5::readGyro(Output &out)
     for (int i = 0; i < 3; i++) {
         out.gyroValues[i] = (gyroacc.g[i]-gyro_bias[i])*acc_scale;
     }
+    out.newGyro = true;
 }
 
 // not implemented yet. No sensorchip class for barometer yet.
@@ -80,6 +83,7 @@ void Altimu10v5::readBaro(Output &out) {
     out.rawBaro[0] = 0;
     out.baroTime = readTime();
     out.baroValues[0] = 0;
+    out.newBaro = true;
 }
 
 void Altimu10v5::read(Output &out) {
