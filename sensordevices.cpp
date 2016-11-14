@@ -96,7 +96,8 @@ float Altimu10v5::readTime()
     if (temp < 0) {
         time0 = lasttime;
         temp = 0;
-        std::cout << "------------- " << temp << " -------------"<< std::endl;
+        std::cout << "ERRORERRORERRORERROR"<< std::endl;
     }
+    std::cout << "------------- " << temp << " -------------"<< std::endl;
     temp;
 }
