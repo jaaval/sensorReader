@@ -3,6 +3,7 @@
 #define SENSORSAMPLER_H
 
 #include "sensordevices.h"
+//#include "algorithm/manager.hpp"
 
 class SensorSampler {
 

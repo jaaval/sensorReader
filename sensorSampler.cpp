@@ -2,23 +2,22 @@
 #include "sensorSampler.h"
 #include <chrono>
 #include <unistd.h>
-#include <iostream>
-#include <fstream>
 #include <cassert>
+#include <iostream>
 
 
 SensorSampler::SensorSampler(const char* i2c):
 	imu(i2c),
-	magsr(50),
+	magsr(40),
 	gyrosr(100),
 	accsr(100)
 {}
 
 
 void SensorSampler::run() {
-	float magdt = 1000.0/magsr;
-	float gyrodt = 1000.0/gyrosr;
-	float accdt = 1000.0/accsr;
+	float magdt = 1000000.0/magsr;
+	float gyrodt = 1000000.0/gyrosr;
+	float accdt = 1000000.0/accsr;
 
 	std::chrono::steady_clock::time_point gyrotime = std::chrono::steady_clock::now();
 	std::chrono::steady_clock::time_point acctime = std::chrono::steady_clock::now();
@@ -26,36 +25,37 @@ void SensorSampler::run() {
 	std::chrono::steady_clock::time_point t = std::chrono::steady_clock::now();
 
 	IMU::Output out;
-
-	std::ofstream myfile("testOut.txt");
-	assert(myfile.is_open());
+	//cpa::algorithm::manager man;
+	//man.defineAvailableSensors(cpa::api::sensorAvailability::AVAILABLE_UNCALIBRATED,
+	//	cpa::api::sensorAvailability::AVAILABLE_UNCALIBRATED,
+	//	cpa::api::sensorAvailability::AVAILABLE_UNCALIBRATED,
+	//	cpa::api::sensorAvailability::AVAILABLE_NONE);
 
 	int i = 0;
 	while (true) {
 		imu.read(out);
 		t = std::chrono::steady_clock::now();
-		if (std::chrono::duration_cast<std::chrono::milliseconds>(t-magtime).count() >= magdt) {
+		if (std::chrono::duration_cast<std::chrono::nanoseconds>(t-magtime).count() >= magdt) {
 			magtime = t;
-			std::cout << "Mag: " << out.magValues[0] << " " << out.magValues[1] << " " << out.magValues[2] << " " << out.magValues[3] << std::endl;
-			myfile << out.magValues[0] << ", " << 5 << ", " << out.magValues[1] << "," << out.magValues[2] << ", " << out.magValues[3] << std::endl;
+			//man.addSample(cpa::api::imuSensor::IMU_MAGNETOMETER, out.magTime, out.magValues[0], out.magValues[1], out.magValues[2]);
+			std::cout << out.magTime<<" "<<out.magValues[0]<<" "<<out.magValues[1]<<" "<<out.magValues[2]<<std::endl;
 		}
 
-		if (std::chrono::duration_cast<std::chrono::milliseconds>(t-gyrotime).count() >= gyrodt) {
+		if (std::chrono::duration_cast<std::chrono::nanoseconds>(t-gyrotime).count() >= gyrodt) {
 			gyrotime = t;
-			std::cout << "Acc: " << out.accValues[0] << " " << out.accValues[1] << " " << out.accValues[2] << " " << out.accValues[3] << std::endl;
-			myfile << out.accValues[0] << ", " << 3 << ", " << out.accValues[1] << ", " << out.accValues[2] << ", " << out.accValues[3] << std::endl;
+			//man.addSample(cpa::api::imuSensor::IMU_GYROSCOPE, out.gyroTime, out.gyroValues[0], out.gyroValues[1], out.gyroValues[2]);
+			std::cout << out.gyroTime<<" "<<out.gyroValues[0]<<" "<<out.gyroValues[1]<<" "<<out.gyroValues[2]<<std::endl;
 		}
 
-		if (std::chrono::duration_cast<std::chrono::milliseconds>(t-acctime).count() >= accdt) {
+		if (std::chrono::duration_cast<std::chrono::nanoseconds>(t-acctime).count() >= accdt) {
 			acctime = t;
-			std::cout << "Gyro: " << out.gyroValues[0] << " " << out.gyroValues[1] << " " << out.gyroValues[2] << " " << out.gyroValues[3] << std::endl;
-			myfile << out.gyroValues[0] << ", " << 4 << ", " << out.gyroValues[1] << ", " << out.gyroValues[2] << ", " << out.gyroValues[3] << std::endl;
+			//man.addSample(cpa::api::imuSensor::IMU_ACCELEROMETER, out.accTime, out.accValues[0], out.accValues[1], out.accValues[2]);
+			std::cout << out.accTime<<" "<<out.accValues[0]<<" "<<out.accValues[1]<<" "<<out.accValues[2]<<std::endl;
 		}
 		//usleep(1000); 
 
 		// push to cpa or something
 		i++;
 	}
-	myfile.close();
 
 }

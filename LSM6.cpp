@@ -1,7 +1,6 @@
 #include "LSM6.h"
 #include <math.h>
 #include <cassert>
-#include <iostream>
 
 
 // and sets the last bit correctly based on reads and writes
@@ -111,7 +110,7 @@ bool LSM6::readAcc(void)
 
   uint8_t status = readReg(STATUS_REG); 
 
-  if (status & 1) {
+  if (status & 1) { // if new data in acc
     uint8_t block[6];
     i2c.readBlock(OUTX_L_XL, sizeof(block), block);
 
@@ -131,7 +130,7 @@ bool LSM6::readGyro(void)
 {
   uint8_t status = readReg(STATUS_REG);
 
-  if (status & 2) {  
+  if (status & 2) {  // if new data in gyro
     uint8_t block[6];
     i2c.readBlock(OUTX_L_G, sizeof(block), block);
 

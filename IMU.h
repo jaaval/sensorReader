@@ -2,6 +2,7 @@
 #define _IMU_H
 
 #include <chrono>
+#include <stdint.h>
 
 /*
  *  The base class declaring the sensor reading functions
@@ -14,14 +15,18 @@ class IMU {
 public:
 
     struct Output {
-        float magValues[4];                     // sensor output is defined as [timestamp, sensorvalues ...]
-        float gyroValues[4];
-        float accValues[4];
-        float baroValues[2];
+        float magValues[3];                     // sensor output is defined as [timestamp, sensorvalues ...]
+        float gyroValues[3];
+        float accValues[3];
+        float baroValues[1];
         int rawMag[3];                          // raw nonscaled sensorvalues
         int rawGyro[3];
         int rawAcc[3];
         int rawBaro[1];
+        uint64_t magTime;
+        uint64_t gyroTime;
+        uint64_t accTime;
+        uint64_t baroTime;
     };
 
     // Scaled readings
