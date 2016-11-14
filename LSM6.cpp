@@ -129,9 +129,9 @@ bool LSM6::readAcc(void)
 bool LSM6::readGyro(void)
 {
   uint8_t status = readReg(STATUS_REG);
-  
-  if (status & 2) {
-    std::cout << "asdfasdfasdfasdfasdf" << std::endl;
+  std::cout << std::endl << (int)status << std::endl << std::endl;
+
+  if (status & 2) {  
     uint8_t block[6];
     i2c.readBlock(OUTX_L_G, sizeof(block), block);
 
