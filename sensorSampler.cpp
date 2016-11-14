@@ -50,12 +50,6 @@ void SensorSampler::run() {
 			out.newAcc = false;
 		}
 
-		// this does not really do anything atm. 
-		if (std::chrono::duration_cast<std::chrono::nanoseconds>(out.accTime-synctime).count() >= timesync) {
-			synctime = out.accTime;
-			//man.setTime(synctime,synctime);
-		}
-		//usleep(1000); 
 
 		// push to cpa or something
 		i++;
