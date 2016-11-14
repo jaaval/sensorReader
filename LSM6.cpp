@@ -94,6 +94,7 @@ void LSM6::enableDefault(void)
   }
 }
 
+
 void LSM6::writeReg(uint8_t reg, uint8_t value)
 {
   i2c.writeByte(reg, value);
@@ -129,7 +130,6 @@ bool LSM6::readAcc(void)
 bool LSM6::readGyro(void)
 {
   uint8_t status = readReg(STATUS_REG);
-  std::cout << std::endl << (int)status << std::endl << std::endl;
 
   if (status & 2) {  
     uint8_t block[6];

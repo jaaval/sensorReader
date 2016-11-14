@@ -14,7 +14,6 @@ LIS3MDL::LIS3MDL(const char * i2cDeviceName):
   _device = device_auto;
 
   assert(init());
-  
 }
 
 bool LIS3MDL::init(deviceType device, sa1State sa1)
@@ -83,6 +82,7 @@ void LIS3MDL::enableDefault(void)
     writeReg(CTRL_REG4, 0x0C);
   }
 }
+
 
 // Writes a mag register
 void LIS3MDL::writeReg(uint8_t reg, uint8_t value)

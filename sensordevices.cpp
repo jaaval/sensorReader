@@ -27,6 +27,7 @@ Altimu10v5::Altimu10v5(const char * i2cDeviceName) :
     gyroAvailable = true;
     accAvailable = true;
     baroAvailable = false;
+    enable();
 }
 
 void Altimu10v5::enable()
