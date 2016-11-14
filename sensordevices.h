@@ -20,7 +20,7 @@ public:
     void readGyro(Output &out);
     void readBaro(Output &out);
 
-    float readTime();
+    uint64_t readTime();
 
     void enable();
     void measureOffsets();

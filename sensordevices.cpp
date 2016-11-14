@@ -89,7 +89,7 @@ void Altimu10v5::read(Output &out) {
     if (baroAvailable) readBaro(out);
 }
 
-float Altimu10v5::readTime()
+uint64_t Altimu10v5::readTime()
 {
     lasttime = std::chrono::steady_clock::now();
     uint64_t temp = std::chrono::duration_cast<std::chrono::nanoseconds>(lasttime-time0).count();
@@ -97,5 +97,6 @@ float Altimu10v5::readTime()
         time0 = lasttime;
         temp = 0;
     }
+    //std::cout << temp<< std::endl;
     temp;
 }
