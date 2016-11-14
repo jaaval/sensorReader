@@ -102,5 +102,5 @@ uint64_t Altimu10v5::readTime()
         temp = 0;
     }
     //std::cout << temp<< std::endl;
-    temp;
+    return temp;
 }
